@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Retro Console Icon -->
+  <rect x="10" y="25" width="80" height="50" fill="#1a1a2e" stroke="#e60012" stroke-width="3" rx="5"/>
+  <!-- Screen -->
+  <rect x="20" y="35" width="30" height="20" fill="#0f0f1e" stroke="#00cc00" stroke-width="2" rx="2"/>
+  <!-- Screen pixels -->
+  <rect x="22" y="37" width="4" height="4" fill="#00ff00"/>
+  <rect x="28" y="37" width="4" height="4" fill="#00ff00"/>
+  <rect x="34" y="37" width="4" height="4" fill="#00ff00"/>
+  <rect x="40" y="37" width="4" height="4" fill="#00ff00"/>
+  <rect x="22" y="43" width="4" height="4" fill="#00ff00"/>
+  <rect x="28" y="43" width="4" height="4" fill="#00ff00"/>
+  <rect x="34" y="43" width="4" height="4" fill="#00ff00"/>
+  <rect x="40" y="43" width="4" height="4" fill="#00ff00"/>
+  <rect x="22" y="49" width="4" height="4" fill="#00ff00"/>
+  <rect x="28" y="49" width="4" height="4" fill="#00ff00"/>
+  <!-- Buttons -->
+  <circle cx="65" cy="42" r="4" fill="#ffcc00" stroke="#fff" stroke-width="1"/>
+  <circle cx="75" cy="42" r="4" fill="#ffcc00" stroke="#fff" stroke-width="1"/>
+  <circle cx="65" cy="52" r="4" fill="#ffcc00" stroke="#fff" stroke-width="1"/>
+  <circle cx="75" cy="52" r="4" fill="#ffcc00" stroke="#fff" stroke-width="1"/>
+  <!-- D-Pad -->
+  <rect x="55" y="58" width="8" height="8" fill="#fff" stroke="#1a1a2e" stroke-width="1"/>
+  <rect x="58" y="55" width="2" height="14" fill="#fff"/>
+  <rect x="55" y="58" width="8" height="2" fill="#fff"/>
+  <!-- Console base -->
+  <rect x="15" y="70" width="70" height="8" fill="#0f0f1e" stroke="#e60012" stroke-width="2" rx="3"/>
+</svg>
