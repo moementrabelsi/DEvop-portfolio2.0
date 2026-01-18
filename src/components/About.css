@@ -1,0 +1,424 @@
+.about-section {
+  position: relative;
+}
+
+.player-profile {
+  max-width: 1000px;
+  margin: 0 auto;
+  background: rgba(0, 0, 0, 0.4);
+  border: 3px solid var(--nintendo-border);
+  padding: 30px;
+}
+
+.profile-header {
+  display: flex;
+  gap: 25px;
+  margin-bottom: 30px;
+  padding-bottom: 25px;
+  border-bottom: 3px solid var(--nintendo-border);
+}
+
+.player-avatar {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.avatar-frame {
+  width: 120px;
+  height: 120px;
+  background: rgba(0, 0, 0, 0.5);
+  border: 4px solid var(--nintendo-yellow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 60px;
+  box-shadow: 0 0 20px var(--nintendo-yellow);
+  position: relative;
+}
+
+.level-badge {
+  position: absolute;
+  bottom: -8px;
+  right: -8px;
+  background: var(--nintendo-red);
+  border: 3px solid var(--nintendo-text);
+  padding: 6px 10px;
+  font-size: 10px;
+  color: var(--nintendo-text);
+  box-shadow: 0 0 15px var(--nintendo-red);
+  z-index: 2;
+}
+
+.player-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.player-name {
+  font-size: 18px;
+  color: var(--nintendo-yellow);
+  text-shadow: 0 0 10px var(--nintendo-yellow);
+  font-weight: bold;
+}
+
+.player-title {
+  font-size: 12px;
+  color: var(--nintendo-text);
+  margin-bottom: 5px;
+}
+
+.player-meta {
+  display: flex;
+  gap: 15px;
+  font-size: 9px;
+  color: var(--nintendo-text-dim);
+  flex-wrap: wrap;
+}
+
+.meta-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.xp-bar-container {
+  margin-top: 10px;
+}
+
+.xp-label {
+  font-size: 8px;
+  color: var(--nintendo-text-dim);
+  margin-bottom: 5px;
+}
+
+.xp-bar {
+  width: 100%;
+  height: 12px;
+  background: rgba(0, 0, 0, 0.5);
+  border: 2px solid var(--nintendo-border);
+  position: relative;
+  overflow: hidden;
+}
+
+.xp-fill {
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    var(--nintendo-blue),
+    var(--nintendo-green),
+    var(--nintendo-yellow)
+  );
+  box-shadow: 0 0 10px var(--nintendo-green);
+  animation: xp-glow 2s ease-in-out infinite;
+}
+
+@keyframes xp-glow {
+  0%, 100% {
+    box-shadow: 0 0 10px var(--nintendo-green);
+  }
+  50% {
+    box-shadow: 0 0 20px var(--nintendo-green);
+  }
+}
+
+.profile-tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 25px;
+  border-bottom: 2px solid var(--nintendo-border);
+}
+
+.tab-button {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 9px;
+  padding: 10px 20px;
+  background: transparent;
+  border: 2px solid transparent;
+  border-bottom: 3px solid transparent;
+  color: var(--nintendo-text-dim);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  margin-bottom: -2px;
+}
+
+.tab-button:hover {
+  color: var(--nintendo-yellow);
+  border-bottom-color: var(--nintendo-yellow);
+}
+
+.tab-button.active {
+  color: var(--nintendo-red);
+  border-bottom-color: var(--nintendo-red);
+  box-shadow: 0 0 15px var(--nintendo-glow);
+}
+
+.profile-content {
+  min-height: 400px;
+}
+
+.panel-title {
+  font-size: 14px;
+  color: var(--nintendo-yellow);
+  text-shadow: 0 0 10px var(--nintendo-yellow);
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--nintendo-border);
+  text-align: center;
+}
+
+/* Stats Panel */
+.attributes-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.attribute-item {
+  background: rgba(0, 0, 0, 0.3);
+  border: 2px solid var(--nintendo-border);
+  padding: 15px;
+}
+
+.attribute-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.attribute-name {
+  font-size: 10px;
+  color: var(--nintendo-text);
+}
+
+.attribute-value {
+  font-size: 10px;
+  color: var(--nintendo-yellow);
+  font-weight: bold;
+}
+
+.attribute-bar {
+  width: 100%;
+  height: 10px;
+  background: rgba(0, 0, 0, 0.5);
+  border: 2px solid var(--nintendo-border);
+  position: relative;
+  overflow: hidden;
+}
+
+.attribute-fill {
+  height: 100%;
+  transition: width 0.5s ease;
+  box-shadow: 0 0 10px currentColor;
+}
+
+.attr-blue {
+  background: var(--nintendo-blue);
+  color: var(--nintendo-blue);
+}
+
+.attr-green {
+  background: var(--nintendo-green);
+  color: var(--nintendo-green);
+}
+
+.attr-yellow {
+  background: var(--nintendo-yellow);
+  color: var(--nintendo-yellow);
+}
+
+.bio-section {
+  background: rgba(0, 0, 0, 0.3);
+  border: 2px solid var(--nintendo-border);
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.bio-title {
+  font-size: 11px;
+  color: var(--nintendo-blue);
+  margin-bottom: 15px;
+  text-shadow: 0 0 10px var(--nintendo-blue);
+}
+
+.bio-text {
+  font-size: 10px;
+  color: var(--nintendo-text-dim);
+  line-height: 1.8;
+}
+
+/* Quests Panel */
+.quests-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.quest-item {
+  background: rgba(0, 0, 0, 0.3);
+  border: 3px solid var(--nintendo-border);
+  padding: 20px;
+  transition: all 0.3s ease;
+}
+
+.quest-item:hover {
+  border-color: var(--nintendo-blue);
+  box-shadow: 0 0 20px rgba(0, 102, 204, 0.4);
+  transform: translateX(5px);
+}
+
+.quest-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.quest-icon {
+  font-size: 20px;
+}
+
+.quest-title {
+  font-size: 12px;
+  color: var(--nintendo-yellow);
+  flex: 1;
+  text-shadow: 0 0 10px var(--nintendo-yellow);
+}
+
+.quest-status {
+  font-size: 7px;
+  padding: 4px 8px;
+  border: 2px solid;
+}
+
+.quest-status.in-progress {
+  color: var(--nintendo-yellow);
+  border-color: var(--nintendo-yellow);
+  background: rgba(255, 204, 0, 0.1);
+}
+
+.quest-description {
+  font-size: 9px;
+  color: var(--nintendo-text-dim);
+  margin-bottom: 15px;
+  line-height: 1.6;
+}
+
+.quest-progress {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.quest-progress-bar {
+  flex: 1;
+  height: 12px;
+  background: rgba(0, 0, 0, 0.5);
+  border: 2px solid var(--nintendo-border);
+  position: relative;
+  overflow: hidden;
+}
+
+.quest-progress-fill {
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    var(--nintendo-blue),
+    var(--nintendo-green)
+  );
+  box-shadow: 0 0 10px var(--nintendo-green);
+  transition: width 0.5s ease;
+}
+
+.quest-progress-text {
+  font-size: 9px;
+  color: var(--nintendo-text);
+  min-width: 40px;
+  text-align: right;
+}
+
+.quest-reward {
+  font-size: 8px;
+  color: var(--nintendo-green);
+  text-shadow: 0 0 10px var(--nintendo-green);
+}
+
+/* Achievements Panel */
+.achievements-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 20px;
+}
+
+.achievement-item {
+  background: rgba(0, 0, 0, 0.3);
+  border: 3px solid var(--nintendo-border);
+  padding: 20px;
+  text-align: center;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.achievement-item.unlocked {
+  border-color: var(--nintendo-green);
+  box-shadow: 0 0 15px rgba(0, 204, 0, 0.3);
+}
+
+.achievement-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 25px rgba(0, 204, 0, 0.5);
+}
+
+.achievement-icon {
+  font-size: 40px;
+  filter: grayscale(0);
+}
+
+.achievement-name {
+  font-size: 10px;
+  color: var(--nintendo-text);
+  font-weight: bold;
+}
+
+.achievement-date {
+  font-size: 8px;
+  color: var(--nintendo-text-dim);
+}
+
+@media (max-width: 768px) {
+  .profile-header {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .player-avatar {
+    align-self: center;
+  }
+
+  .profile-tabs {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .tab-button {
+    font-size: 8px;
+    padding: 8px 15px;
+  }
+
+  .achievements-grid {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 15px;
+  }
+
+  .quest-header {
+    flex-wrap: wrap;
+  }
+}

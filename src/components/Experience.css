@@ -1,0 +1,250 @@
+.experience-section {
+  position: relative;
+}
+
+.experience-container {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 40px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.experience-timeline {
+  position: relative;
+  padding-left: 30px;
+}
+
+.experience-timeline::before {
+  content: '';
+  position: absolute;
+  left: 15px;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: var(--nintendo-border);
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 15px;
+  border: 2px solid transparent;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.timeline-item:hover {
+  border-color: var(--nintendo-blue);
+  background: rgba(0, 102, 204, 0.1);
+  transform: translateX(5px);
+}
+
+.timeline-item.active {
+  border-color: var(--nintendo-red);
+  background: rgba(230, 0, 18, 0.1);
+  box-shadow: 0 0 15px var(--nintendo-glow);
+  transform: translateX(5px) scale(1.02);
+}
+
+.timeline-item.hovered {
+  border-color: var(--nintendo-blue);
+  background: rgba(0, 102, 204, 0.15);
+}
+
+.timeline-marker {
+  position: absolute;
+  left: -23px;
+  top: 20px;
+  width: 16px;
+  height: 16px;
+  background: var(--nintendo-border);
+  border: 3px solid var(--nintendo-bg-dark);
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.timeline-item.active .timeline-marker {
+  background: var(--nintendo-red);
+  box-shadow: 0 0 15px var(--nintendo-red);
+  transform: scale(1.2);
+}
+
+.timeline-content {
+  font-size: 9px;
+}
+
+.timeline-title {
+  color: var(--nintendo-yellow);
+  font-size: 11px;
+  margin-bottom: 5px;
+  text-shadow: 0 0 10px var(--nintendo-yellow);
+}
+
+.timeline-company {
+  color: var(--nintendo-text);
+  margin-bottom: 5px;
+}
+
+.timeline-period {
+  color: var(--nintendo-text-dim);
+  font-size: 8px;
+}
+
+.experience-details {
+  min-height: 400px;
+}
+
+.experience-card {
+  background: rgba(0, 0, 0, 0.3);
+  border: 3px solid var(--nintendo-border);
+  padding: 30px;
+  animation: card-appear 0.5s ease;
+}
+
+@keyframes card-appear {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.card-header {
+  margin-bottom: 25px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid var(--nintendo-border);
+}
+
+.card-title {
+  font-size: 18px;
+  color: var(--nintendo-yellow);
+  margin-bottom: 15px;
+  text-shadow: 0 0 10px var(--nintendo-yellow);
+}
+
+.card-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  font-size: 9px;
+  color: var(--nintendo-text-dim);
+}
+
+.card-company {
+  color: var(--nintendo-red);
+  font-weight: bold;
+}
+
+.card-location,
+.card-period {
+  color: var(--nintendo-text-dim);
+}
+
+.card-body {
+  font-size: 10px;
+  line-height: 1.8;
+}
+
+.card-description {
+  list-style: none;
+  margin-bottom: 30px;
+}
+
+.card-description li {
+  position: relative;
+  padding-left: 25px;
+  margin-bottom: 15px;
+  color: var(--nintendo-text-dim);
+}
+
+.card-description li::before {
+  content: '▸';
+  position: absolute;
+  left: 0;
+  color: var(--nintendo-blue);
+  font-size: 12px;
+}
+
+.card-tech {
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 2px solid var(--nintendo-border);
+}
+
+.tech-label {
+  font-size: 9px;
+  color: var(--nintendo-yellow);
+  margin-bottom: 15px;
+  text-transform: uppercase;
+}
+
+.tech-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.tech-tag {
+  padding: 8px 12px;
+  background: rgba(0, 102, 204, 0.2);
+  border: 2px solid var(--nintendo-blue);
+  color: var(--nintendo-text);
+  font-size: 8px;
+  transition: all 0.3s ease;
+}
+
+.tech-tag:hover {
+  background: rgba(0, 102, 204, 0.4);
+  border-color: var(--nintendo-yellow);
+  color: var(--nintendo-yellow);
+  transform: translateY(-2px);
+  box-shadow: 0 0 10px var(--nintendo-blue);
+}
+
+@media (max-width: 968px) {
+  .experience-container {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .experience-timeline {
+    display: flex;
+    overflow-x: auto;
+    padding-left: 0;
+    padding-bottom: 20px;
+  }
+
+  .experience-timeline::before {
+    display: none;
+  }
+
+  .timeline-item {
+    min-width: 200px;
+    margin-right: 20px;
+    margin-bottom: 0;
+  }
+
+  .timeline-marker {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .experience-card {
+    padding: 20px;
+  }
+
+  .card-title {
+    font-size: 14px;
+  }
+
+  .card-description li {
+    font-size: 9px;
+  }
+}
+

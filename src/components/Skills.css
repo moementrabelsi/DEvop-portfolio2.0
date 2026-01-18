@@ -1,0 +1,390 @@
+.skills-section {
+  position: relative;
+}
+
+.inventory-container {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.inventory-category {
+  background: rgba(0, 0, 0, 0.4);
+  border: 3px solid var(--nintendo-border);
+  padding: 25px;
+  position: relative;
+}
+
+.category-header {
+  margin-bottom: 25px;
+  padding-bottom: 15px;
+  border-bottom: 3px solid var(--nintendo-border);
+}
+
+.category-title {
+  font-size: 16px;
+  color: var(--nintendo-text);
+  text-shadow: 0 0 10px currentColor;
+  margin: 0;
+  text-align: center;
+}
+
+.category-red .category-title {
+  color: var(--nintendo-red);
+  text-shadow: 0 0 15px var(--nintendo-red);
+}
+
+.category-blue .category-title {
+  color: var(--nintendo-blue);
+  text-shadow: 0 0 15px var(--nintendo-blue);
+}
+
+.category-yellow .category-title {
+  color: var(--nintendo-yellow);
+  text-shadow: 0 0 15px var(--nintendo-yellow);
+}
+
+.items-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.inventory-item {
+  background: rgba(0, 0, 0, 0.5);
+  border: 3px solid var(--nintendo-border);
+  padding: 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  min-height: 180px;
+}
+
+.inventory-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+  pointer-events: none;
+}
+
+.inventory-item.rarity-legendary {
+  border-color: var(--nintendo-yellow);
+  box-shadow: 0 0 15px rgba(255, 204, 0, 0.3);
+}
+
+.inventory-item.rarity-legendary::before {
+  border-color: var(--nintendo-yellow);
+  box-shadow: inset 0 0 20px rgba(255, 204, 0, 0.2);
+}
+
+.inventory-item.rarity-epic {
+  border-color: var(--nintendo-red);
+  box-shadow: 0 0 15px rgba(230, 0, 18, 0.3);
+}
+
+.inventory-item.rarity-epic::before {
+  border-color: var(--nintendo-red);
+  box-shadow: inset 0 0 20px rgba(230, 0, 18, 0.2);
+}
+
+.inventory-item.rarity-rare {
+  border-color: var(--nintendo-blue);
+  box-shadow: 0 0 15px rgba(0, 102, 204, 0.3);
+}
+
+.inventory-item.rarity-rare::before {
+  border-color: var(--nintendo-blue);
+  box-shadow: inset 0 0 20px rgba(0, 102, 204, 0.2);
+}
+
+.inventory-item.hovered {
+  transform: translateY(-8px) scale(1.05);
+  z-index: 10;
+}
+
+.inventory-item.hovered.rarity-legendary {
+  box-shadow: 0 0 30px rgba(255, 204, 0, 0.6);
+}
+
+.inventory-item.hovered.rarity-epic {
+  box-shadow: 0 0 30px rgba(230, 0, 18, 0.6);
+}
+
+.inventory-item.hovered.rarity-rare {
+  box-shadow: 0 0 30px rgba(0, 102, 204, 0.6);
+}
+
+.inventory-item.selected {
+  border-width: 4px;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.item-icon {
+  font-size: 48px;
+  filter: grayscale(0.2);
+  transition: all 0.3s ease;
+  animation: item-float 3s ease-in-out infinite;
+}
+
+.inventory-item.hovered .item-icon {
+  filter: grayscale(0);
+  transform: scale(1.2) rotate(5deg);
+  animation: item-pulse 0.5s ease-in-out;
+}
+
+@keyframes item-float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes item-pulse {
+  0%, 100% {
+    transform: scale(1.2) rotate(5deg);
+  }
+  50% {
+    transform: scale(1.3) rotate(-5deg);
+  }
+}
+
+.item-name {
+  font-size: 12px;
+  color: var(--nintendo-text);
+  font-weight: bold;
+  text-shadow: 0 0 10px currentColor;
+  margin-top: 5px;
+}
+
+.inventory-item.rarity-legendary .item-name {
+  color: var(--nintendo-yellow);
+  text-shadow: 0 0 15px var(--nintendo-yellow);
+}
+
+.inventory-item.rarity-epic .item-name {
+  color: var(--nintendo-red);
+  text-shadow: 0 0 15px var(--nintendo-red);
+}
+
+.inventory-item.rarity-rare .item-name {
+  color: var(--nintendo-blue);
+  text-shadow: 0 0 15px var(--nintendo-blue);
+}
+
+.item-description {
+  font-size: 8px;
+  color: var(--nintendo-text-dim);
+  line-height: 1.4;
+  margin-top: 5px;
+  flex: 1;
+}
+
+.item-rarity {
+  font-size: 7px;
+  padding: 4px 8px;
+  border: 2px solid;
+  margin-top: auto;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.inventory-item.rarity-legendary .item-rarity {
+  color: var(--nintendo-yellow);
+  border-color: var(--nintendo-yellow);
+  background: rgba(255, 204, 0, 0.1);
+  box-shadow: 0 0 10px var(--nintendo-yellow);
+}
+
+.inventory-item.rarity-epic .item-rarity {
+  color: var(--nintendo-red);
+  border-color: var(--nintendo-red);
+  background: rgba(230, 0, 18, 0.1);
+  box-shadow: 0 0 10px var(--nintendo-red);
+}
+
+.inventory-item.rarity-rare .item-rarity {
+  color: var(--nintendo-blue);
+  border-color: var(--nintendo-blue);
+  background: rgba(0, 102, 204, 0.1);
+  box-shadow: 0 0 10px var(--nintendo-blue);
+}
+
+.item-details {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 2px solid var(--nintendo-border);
+  width: 100%;
+  animation: details-appear 0.3s ease;
+}
+
+@keyframes details-appear {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.item-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.stat-line {
+  display: flex;
+  justify-content: space-between;
+  font-size: 8px;
+  color: var(--nintendo-text-dim);
+}
+
+.stat-value {
+  color: var(--nintendo-green);
+  text-shadow: 0 0 8px var(--nintendo-green);
+  font-weight: bold;
+}
+
+.additional-info {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  margin-top: 40px;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.languages-section,
+.hobbies-section {
+  padding: 25px;
+  background: rgba(0, 0, 0, 0.3);
+  border: 3px solid var(--nintendo-border);
+}
+
+.section-subtitle {
+  font-size: 12px;
+  color: var(--nintendo-yellow);
+  margin-bottom: 20px;
+  text-align: center;
+  text-transform: uppercase;
+  text-shadow: 0 0 10px var(--nintendo-yellow);
+}
+
+.languages-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.language-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.2);
+  border: 2px solid var(--nintendo-border);
+  font-size: 10px;
+  transition: all 0.3s ease;
+}
+
+.language-item:hover {
+  border-color: var(--nintendo-blue);
+  box-shadow: 0 0 15px rgba(0, 102, 204, 0.3);
+  transform: translateX(5px);
+}
+
+.language-icon {
+  font-size: 20px;
+}
+
+.language-name {
+  color: var(--nintendo-text);
+  font-weight: bold;
+  flex: 1;
+}
+
+.language-level {
+  color: var(--nintendo-green);
+  text-shadow: 0 0 10px var(--nintendo-green);
+}
+
+.hobbies-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.hobby-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.2);
+  border: 2px solid var(--nintendo-border);
+  font-size: 10px;
+  color: var(--nintendo-text-dim);
+  transition: all 0.3s ease;
+}
+
+.hobby-item:hover {
+  border-color: var(--nintendo-green);
+  box-shadow: 0 0 15px rgba(0, 204, 0, 0.3);
+  transform: translateX(5px);
+  color: var(--nintendo-text);
+}
+
+.hobby-icon {
+  font-size: 20px;
+  filter: grayscale(0.5);
+  transition: filter 0.3s ease;
+}
+
+.hobby-item:hover .hobby-icon {
+  filter: grayscale(0);
+}
+
+@media (max-width: 768px) {
+  .items-grid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 15px;
+  }
+
+  .inventory-item {
+    padding: 15px;
+    min-height: 160px;
+  }
+
+  .item-icon {
+    font-size: 36px;
+  }
+
+  .item-name {
+    font-size: 10px;
+  }
+
+  .item-description {
+    font-size: 7px;
+  }
+
+  .additional-info {
+    grid-template-columns: 1fr;
+  }
+}

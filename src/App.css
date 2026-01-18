@@ -1,0 +1,271 @@
+.app {
+  min-height: 100vh;
+  position: relative;
+  background: var(--nintendo-bg);
+  background-image: 
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 0, 0, 0.03) 2px,
+      rgba(0, 0, 0, 0.03) 4px
+    );
+}
+
+.main-content {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Section styling */
+section {
+  padding: 60px 20px;
+  margin: 40px 0;
+  position: relative;
+  border: 3px solid var(--nintendo-border);
+  background: rgba(26, 26, 46, 0.8);
+  box-shadow: 
+    0 0 20px rgba(0, 0, 0, 0.5),
+    inset 0 0 20px rgba(0, 102, 204, 0.1);
+  transition: all 0.3s ease;
+  scroll-margin-top: 80px;
+}
+
+section:hover {
+  border-color: var(--nintendo-red);
+  box-shadow: 
+    0 0 30px var(--nintendo-glow),
+    inset 0 0 30px rgba(0, 102, 204, 0.2);
+  transform: translateY(-2px);
+}
+
+section h2 {
+  font-size: 24px;
+  color: var(--nintendo-yellow);
+  text-shadow: 
+    3px 3px 0 var(--nintendo-bg-dark),
+    0 0 10px var(--nintendo-yellow);
+  margin-bottom: 30px;
+  text-align: center;
+  letter-spacing: 2px;
+  position: relative;
+  padding-bottom: 15px;
+}
+
+section h2::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 3px;
+  background: var(--nintendo-red);
+  box-shadow: 0 0 10px var(--nintendo-red);
+}
+
+/* Pixelated button style */
+.pixel-button {
+  font-family: 'Press Start 2P', monospace;
+  padding: 12px 24px;
+  background: var(--nintendo-red);
+  color: var(--nintendo-text);
+  border: 3px solid var(--nintendo-text);
+  cursor: pointer;
+  font-size: 10px;
+  text-transform: uppercase;
+  transition: all 0.1s ease;
+  box-shadow: 
+    4px 4px 0 var(--nintendo-text),
+    0 0 10px var(--nintendo-glow);
+  position: relative;
+}
+
+.pixel-button:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 
+    2px 2px 0 var(--nintendo-text),
+    0 0 15px var(--nintendo-glow);
+}
+
+.pixel-button:active {
+  transform: translate(4px, 4px);
+  box-shadow: 
+    0 0 0 var(--nintendo-text),
+    0 0 20px var(--nintendo-glow);
+}
+
+/* Typing effect */
+.typing-cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1em;
+  background: var(--nintendo-yellow);
+  margin-left: 4px;
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%, 50% {
+    opacity: 1;
+  }
+  51%, 100% {
+    opacity: 0;
+  }
+}
+
+/* Pixel art animations */
+@keyframes pixel-bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes glow-pulse {
+  0%, 100% {
+    box-shadow: 0 0 10px var(--nintendo-glow);
+  }
+  50% {
+    box-shadow: 0 0 30px var(--nintendo-glow);
+  }
+}
+
+/* Shortcuts hint */
+.shortcuts-hint {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: rgba(15, 15, 30, 0.9);
+  border: 2px solid var(--nintendo-border);
+  padding: 10px 15px;
+  font-size: 8px;
+  color: var(--nintendo-text-dim);
+  z-index: 100;
+  animation: pulse-hint 3s ease-in-out infinite;
+  cursor: pointer;
+  font-family: 'Press Start 2P', monospace;
+  transition: all 0.3s ease;
+}
+
+.shortcuts-hint:hover {
+  border-color: var(--nintendo-yellow);
+  color: var(--nintendo-yellow);
+  box-shadow: 0 0 15px var(--nintendo-yellow);
+  background: rgba(15, 15, 30, 0.95);
+  animation: none;
+}
+
+.shortcuts-hint kbd {
+  padding: 4px 8px;
+  background: var(--nintendo-bg);
+  border: 2px solid var(--nintendo-yellow);
+  color: var(--nintendo-yellow);
+  font-family: 'Press Start 2P', monospace;
+  font-size: 8px;
+  margin: 0 5px;
+}
+
+@keyframes pulse-hint {
+  0%, 100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* Easter egg */
+.easter-egg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3000;
+  animation: fadeIn 0.5s ease;
+}
+
+.easter-egg-content {
+  text-align: center;
+  padding: 40px;
+  background: var(--nintendo-bg-dark);
+  border: 4px solid var(--nintendo-yellow);
+  box-shadow: 0 0 50px var(--nintendo-yellow);
+  animation: bounce-in 0.5s ease;
+}
+
+@keyframes bounce-in {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.easter-egg-content h2 {
+  font-size: 20px;
+  color: var(--nintendo-yellow);
+  margin-bottom: 20px;
+  text-shadow: 0 0 20px var(--nintendo-yellow);
+  animation: glow-pulse 1s ease-in-out infinite;
+}
+
+.easter-egg-content p {
+  font-size: 12px;
+  color: var(--nintendo-text);
+  margin-bottom: 30px;
+}
+
+/* Konami code active state */
+.konami-active {
+  animation: konami-shake 0.5s ease;
+}
+
+@keyframes konami-shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-10px) rotate(-2deg);
+  }
+  75% {
+    transform: translateX(10px) rotate(2deg);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  section {
+    padding: 40px 15px;
+  }
+  
+  section h2 {
+    font-size: 18px;
+  }
+  
+  .main-content {
+    padding: 10px;
+  }
+
+  .shortcuts-hint {
+    bottom: 10px;
+    right: 10px;
+    font-size: 7px;
+    padding: 8px 12px;
+  }
+}
+

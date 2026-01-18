@@ -1,0 +1,121 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --nintendo-red: #e60012;
+  --nintendo-blue: #0066cc;
+  --nintendo-yellow: #ffcc00;
+  --nintendo-green: #00cc00;
+  --nintendo-bg: #1a1a2e;
+  --nintendo-bg-dark: #0f0f1e;
+  --nintendo-text: #ffffff;
+  --nintendo-text-dim: #cccccc;
+  --nintendo-border: #4a4a6a;
+  --nintendo-glow: rgba(230, 0, 18, 0.5);
+}
+
+body {
+  font-family: 'Press Start 2P', monospace;
+  background: var(--nintendo-bg-dark);
+  color: var(--nintendo-text);
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+#root {
+  min-height: 100vh;
+  position: relative;
+}
+
+/* Scanlines effect */
+.scanlines {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1000;
+  background: linear-gradient(
+    transparent 50%,
+    rgba(0, 0, 0, 0.03) 50%
+  );
+  background-size: 100% 4px;
+  animation: scanline 8s linear infinite;
+}
+
+@keyframes scanline {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(4px);
+  }
+}
+
+/* Noise effect */
+.noise {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 999;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  animation: noise 0.2s infinite;
+}
+
+@keyframes noise {
+  0%, 100% {
+    transform: translate(0, 0);
+  }
+  10% {
+    transform: translate(-5%, -5%);
+  }
+  20% {
+    transform: translate(-10%, 5%);
+  }
+  30% {
+    transform: translate(5%, -10%);
+  }
+  40% {
+    transform: translate(-5%, 15%);
+  }
+  50% {
+    transform: translate(-10%, 5%);
+  }
+  60% {
+    transform: translate(15%, 0);
+  }
+  70% {
+    transform: translate(0, 10%);
+  }
+  80% {
+    transform: translate(-15%, 0);
+  }
+  90% {
+    transform: translate(10%, 5%);
+  }
+}
+
+/* Retro border */
+.retro-border {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 998;
+  border: 8px solid var(--nintendo-red);
+  box-shadow: 
+    inset 0 0 20px rgba(230, 0, 18, 0.3),
+    0 0 40px rgba(230, 0, 18, 0.2);
+}
+
+

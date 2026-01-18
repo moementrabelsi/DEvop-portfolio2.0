@@ -1,0 +1,475 @@
+.projects-section {
+  position: relative;
+}
+
+.world-map-overview {
+  max-width: 1200px;
+  margin: 0 auto 40px;
+  background: rgba(0, 0, 0, 0.4);
+  border: 3px solid var(--nintendo-border);
+  padding: 30px;
+}
+
+.map-title {
+  font-size: 16px;
+  color: var(--nintendo-yellow);
+  text-align: center;
+  margin-bottom: 10px;
+  text-shadow: 0 0 15px var(--nintendo-yellow);
+}
+
+.map-subtitle {
+  font-size: 12px;
+  color: var(--nintendo-text);
+  text-align: center;
+  margin-bottom: 5px;
+}
+
+.map-note {
+  font-size: 9px;
+  color: var(--nintendo-text-dim);
+  text-align: center;
+  margin-bottom: 30px;
+  font-style: italic;
+}
+
+.levels-map {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  position: relative;
+}
+
+.level-node {
+  flex: 1;
+  min-width: 150px;
+  background: rgba(0, 0, 0, 0.5);
+  border: 3px solid var(--nintendo-border);
+  padding: 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.level-node::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--nintendo-border);
+  transition: all 0.3s ease;
+}
+
+.level-green {
+  border-color: var(--nintendo-green);
+}
+
+.level-green::before {
+  background: var(--nintendo-green);
+}
+
+.level-blue {
+  border-color: var(--nintendo-blue);
+}
+
+.level-blue::before {
+  background: var(--nintendo-blue);
+}
+
+.level-yellow {
+  border-color: var(--nintendo-yellow);
+}
+
+.level-yellow::before {
+  background: var(--nintendo-yellow);
+}
+
+.level-red {
+  border-color: var(--nintendo-red);
+}
+
+.level-red::before {
+  background: var(--nintendo-red);
+}
+
+.level-purple {
+  border-color: #9b59b6;
+  border-color: var(--nintendo-yellow);
+}
+
+.level-purple::before {
+  background: #9b59b6;
+  background: var(--nintendo-yellow);
+}
+
+.level-node:hover,
+.level-node.selected {
+  transform: translateY(-8px) scale(1.05);
+  box-shadow: 0 0 30px currentColor;
+  z-index: 10;
+}
+
+.level-node.boss-level {
+  border-width: 4px;
+  animation: boss-pulse 2s ease-in-out infinite;
+}
+
+@keyframes boss-pulse {
+  0%, 100% {
+    box-shadow: 0 0 20px currentColor;
+  }
+  50% {
+    box-shadow: 0 0 40px currentColor, 0 0 60px currentColor;
+  }
+}
+
+.level-node.bonus-level {
+  border-style: dashed;
+  border-width: 3px;
+}
+
+.level-number {
+  font-size: 8px;
+  color: var(--nintendo-text-dim);
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.level-icon {
+  font-size: 40px;
+  filter: grayscale(0.3);
+  transition: filter 0.3s ease;
+}
+
+.level-node:hover .level-icon,
+.level-node.selected .level-icon {
+  filter: grayscale(0);
+  animation: icon-spin 0.6s ease;
+}
+
+@keyframes icon-spin {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(15deg) scale(1.2);
+  }
+}
+
+.level-title {
+  font-size: 11px;
+  color: var(--nintendo-text);
+  font-weight: bold;
+  line-height: 1.3;
+}
+
+.boss-badge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: var(--nintendo-red);
+  border: 2px solid var(--nintendo-text);
+  padding: 4px 8px;
+  font-size: 7px;
+  color: var(--nintendo-text);
+  box-shadow: 0 0 15px var(--nintendo-red);
+  z-index: 2;
+}
+
+.bonus-badge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: var(--nintendo-yellow);
+  border: 2px solid var(--nintendo-text);
+  padding: 4px 8px;
+  font-size: 7px;
+  color: var(--nintendo-bg-dark);
+  box-shadow: 0 0 15px var(--nintendo-yellow);
+  z-index: 2;
+}
+
+.level-connector {
+  position: absolute;
+  right: -20px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+  color: var(--nintendo-text-dim);
+  z-index: 1;
+}
+
+.level-details-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  animation: details-appear 0.4s ease;
+}
+
+@keyframes details-appear {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.level-details {
+  background: rgba(0, 0, 0, 0.5);
+  border: 4px solid var(--nintendo-border);
+  padding: 30px;
+  position: relative;
+}
+
+.level-details.level-green {
+  border-color: var(--nintendo-green);
+  box-shadow: 0 0 30px rgba(0, 204, 0, 0.4);
+}
+
+.level-details.level-blue {
+  border-color: var(--nintendo-blue);
+  box-shadow: 0 0 30px rgba(0, 102, 204, 0.4);
+}
+
+.level-details.level-yellow {
+  border-color: var(--nintendo-yellow);
+  box-shadow: 0 0 30px rgba(255, 204, 0, 0.4);
+}
+
+.level-details.level-red {
+  border-color: var(--nintendo-red);
+  box-shadow: 0 0 30px var(--nintendo-glow);
+}
+
+.level-details.level-purple {
+  border-color: var(--nintendo-yellow);
+  box-shadow: 0 0 30px rgba(255, 204, 0, 0.4);
+}
+
+.level-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 3px solid var(--nintendo-border);
+}
+
+.level-header-left {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.level-icon-large {
+  font-size: 60px;
+  filter: grayscale(0);
+}
+
+.level-details-title {
+  font-size: 20px;
+  color: var(--nintendo-yellow);
+  text-shadow: 0 0 15px var(--nintendo-yellow);
+  margin-bottom: 8px;
+}
+
+.level-project-name {
+  font-size: 14px;
+  color: var(--nintendo-text);
+  margin-bottom: 5px;
+}
+
+.level-type {
+  font-size: 10px;
+  color: var(--nintendo-text-dim);
+}
+
+.level-header-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 15px;
+}
+
+.difficulty-rating {
+  text-align: right;
+}
+
+.difficulty-label {
+  font-size: 9px;
+  color: var(--nintendo-text-dim);
+  margin-bottom: 5px;
+}
+
+.difficulty-stars {
+  font-size: 14px;
+  color: var(--nintendo-yellow);
+  text-shadow: 0 0 10px var(--nintendo-yellow);
+}
+
+.close-level-button {
+  background: var(--nintendo-red);
+  border: 3px solid var(--nintendo-text);
+  color: var(--nintendo-text);
+  width: 35px;
+  height: 35px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: 'Press Start 2P', monospace;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.close-level-button:hover {
+  background: var(--nintendo-red);
+  transform: scale(1.1);
+  box-shadow: 0 0 20px var(--nintendo-red);
+}
+
+.level-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+}
+
+.section-title {
+  font-size: 14px;
+  color: var(--nintendo-yellow);
+  text-shadow: 0 0 10px var(--nintendo-yellow);
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--nintendo-border);
+}
+
+.mission-section {
+  grid-column: 1 / -1;
+}
+
+.mission-text {
+  font-size: 11px;
+  color: var(--nintendo-text);
+  line-height: 1.8;
+  padding: 15px;
+  background: rgba(0, 0, 0, 0.3);
+  border-left: 4px solid var(--nintendo-blue);
+}
+
+.tech-stack-section {
+  grid-column: 1 / -1;
+}
+
+.tech-stack-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 12px;
+}
+
+.tech-item {
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.4);
+  border: 2px solid var(--nintendo-border);
+  font-size: 9px;
+  color: var(--nintendo-text);
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.tech-item:hover {
+  border-color: var(--nintendo-green);
+  box-shadow: 0 0 15px rgba(0, 204, 0, 0.3);
+  transform: translateY(-2px);
+}
+
+.features-section,
+.victory-section {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 20px;
+  border: 2px solid var(--nintendo-border);
+}
+
+.features-list,
+.victory-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.features-list li,
+.victory-list li {
+  font-size: 10px;
+  color: var(--nintendo-text-dim);
+  line-height: 1.8;
+  margin-bottom: 10px;
+  padding-left: 20px;
+  position: relative;
+}
+
+.features-list li::before {
+  content: '▸';
+  position: absolute;
+  left: 0;
+  color: var(--nintendo-blue);
+  font-size: 12px;
+}
+
+.victory-list li::before {
+  content: '🏆';
+  position: absolute;
+  left: 0;
+  font-size: 12px;
+}
+
+@media (max-width: 968px) {
+  .levels-map {
+    flex-direction: column;
+  }
+
+  .level-node {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .level-connector {
+    position: static;
+    transform: rotate(90deg);
+    margin: 10px 0;
+  }
+
+  .level-content {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .level-header {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .level-header-right {
+    align-items: flex-start;
+    width: 100%;
+  }
+
+  .level-icon-large {
+    font-size: 40px;
+  }
+
+  .level-details-title {
+    font-size: 16px;
+  }
+}
+

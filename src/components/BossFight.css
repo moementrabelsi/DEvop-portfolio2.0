@@ -1,0 +1,503 @@
+.boss-fight-section {
+  position: relative;
+}
+
+.boss-fight-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+/* Pipeline Map */
+.pipeline-map {
+  background: rgba(0, 0, 0, 0.4);
+  border: 3px solid var(--nintendo-border);
+  padding: 25px;
+}
+
+.map-title {
+  font-size: 14px;
+  color: var(--nintendo-yellow);
+  text-align: center;
+  margin-bottom: 20px;
+  text-shadow: 0 0 10px var(--nintendo-yellow);
+}
+
+.pipeline-stages {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  position: relative;
+}
+
+.pipeline-stage {
+  flex: 1;
+  min-width: 100px;
+  background: rgba(0, 0, 0, 0.5);
+  border: 3px solid var(--nintendo-border);
+  padding: 15px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.pipeline-stage.active {
+  border-color: var(--nintendo-green);
+  box-shadow: 0 0 15px rgba(0, 204, 0, 0.4);
+}
+
+.pipeline-stage.current {
+  border-color: var(--nintendo-yellow);
+  box-shadow: 0 0 25px var(--nintendo-yellow);
+  transform: scale(1.1);
+  z-index: 2;
+}
+
+.stage-blue.active {
+  border-color: var(--nintendo-blue);
+  box-shadow: 0 0 15px rgba(0, 102, 204, 0.4);
+}
+
+.stage-green.active {
+  border-color: var(--nintendo-green);
+  box-shadow: 0 0 15px rgba(0, 204, 0, 0.4);
+}
+
+.stage-yellow.active {
+  border-color: var(--nintendo-yellow);
+  box-shadow: 0 0 15px rgba(255, 204, 0, 0.4);
+}
+
+.stage-icon {
+  font-size: 32px;
+  filter: grayscale(0.7);
+  transition: filter 0.3s ease;
+}
+
+.pipeline-stage.active .stage-icon {
+  filter: grayscale(0);
+  animation: icon-pulse 1s ease-in-out infinite;
+}
+
+@keyframes icon-pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+.stage-name {
+  font-size: 10px;
+  color: var(--nintendo-text);
+  font-weight: bold;
+}
+
+.pipeline-stage.active .stage-name {
+  color: var(--nintendo-green);
+  text-shadow: 0 0 10px var(--nintendo-green);
+}
+
+.stage-arrow {
+  position: absolute;
+  right: -20px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+  color: var(--nintendo-text-dim);
+  z-index: 1;
+}
+
+.pipeline-stage.active .stage-arrow {
+  color: var(--nintendo-green);
+  animation: arrow-glow 1s ease-in-out infinite;
+}
+
+@keyframes arrow-glow {
+  0%, 100% {
+    text-shadow: 0 0 5px var(--nintendo-green);
+  }
+  50% {
+    text-shadow: 0 0 15px var(--nintendo-green);
+  }
+}
+
+/* Boss Arena */
+.boss-arena {
+  background: rgba(0, 0, 0, 0.4);
+  border: 3px solid var(--nintendo-red);
+  padding: 30px;
+  position: relative;
+  box-shadow: 0 0 30px var(--nintendo-glow);
+}
+
+.boss-header {
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 3px solid var(--nintendo-border);
+}
+
+.boss-title {
+  font-size: 18px;
+  color: var(--nintendo-red);
+  text-align: center;
+  margin-bottom: 15px;
+  text-shadow: 0 0 20px var(--nintendo-red);
+  animation: boss-title-glow 2s ease-in-out infinite;
+}
+
+@keyframes boss-title-glow {
+  0%, 100% {
+    text-shadow: 0 0 20px var(--nintendo-red);
+  }
+  50% {
+    text-shadow: 0 0 30px var(--nintendo-red), 0 0 40px var(--nintendo-red);
+  }
+}
+
+.boss-health-bar {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.health-label {
+  font-size: 10px;
+  color: var(--nintendo-text);
+  text-align: center;
+}
+
+.health-bar {
+  width: 100%;
+  height: 20px;
+  background: rgba(0, 0, 0, 0.5);
+  border: 3px solid var(--nintendo-border);
+  position: relative;
+  overflow: hidden;
+}
+
+.health-fill {
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    var(--nintendo-red),
+    var(--nintendo-yellow),
+    var(--nintendo-red)
+  );
+  box-shadow: 0 0 20px var(--nintendo-red);
+  transition: width 0.3s ease;
+  animation: health-pulse 1s ease-in-out infinite;
+}
+
+@keyframes health-pulse {
+  0%, 100% {
+    box-shadow: 0 0 20px var(--nintendo-red);
+  }
+  50% {
+    box-shadow: 0 0 30px var(--nintendo-red), 0 0 40px var(--nintendo-red);
+  }
+}
+
+/* Boss Abilities */
+.boss-abilities {
+  margin-bottom: 30px;
+}
+
+.abilities-title {
+  font-size: 12px;
+  color: var(--nintendo-red);
+  text-align: center;
+  margin-bottom: 20px;
+  text-shadow: 0 0 10px var(--nintendo-red);
+}
+
+.abilities-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+}
+
+.boss-ability {
+  background: rgba(0, 0, 0, 0.5);
+  border: 3px solid var(--nintendo-border);
+  padding: 15px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.ability-red {
+  border-color: var(--nintendo-red);
+  box-shadow: 0 0 10px rgba(230, 0, 18, 0.3);
+}
+
+.ability-yellow {
+  border-color: var(--nintendo-yellow);
+  box-shadow: 0 0 10px rgba(255, 204, 0, 0.3);
+}
+
+.boss-ability:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 20px currentColor;
+}
+
+.ability-icon {
+  font-size: 32px;
+}
+
+.ability-name {
+  font-size: 11px;
+  color: var(--nintendo-text);
+  font-weight: bold;
+}
+
+.ability-damage {
+  font-size: 9px;
+  color: var(--nintendo-red);
+  text-shadow: 0 0 10px var(--nintendo-red);
+}
+
+.ability-description {
+  font-size: 8px;
+  color: var(--nintendo-text-dim);
+}
+
+/* Weapons Section */
+.weapons-section {
+  margin-top: 20px;
+}
+
+.weapons-title {
+  font-size: 12px;
+  color: var(--nintendo-green);
+  text-align: center;
+  margin-bottom: 20px;
+  text-shadow: 0 0 10px var(--nintendo-green);
+}
+
+.weapons-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+}
+
+.weapon-item {
+  background: rgba(0, 0, 0, 0.5);
+  border: 3px solid var(--nintendo-border);
+  padding: 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Press Start 2P', monospace;
+}
+
+.weapon-green {
+  border-color: var(--nintendo-green);
+  box-shadow: 0 0 10px rgba(0, 204, 0, 0.3);
+}
+
+.weapon-blue {
+  border-color: var(--nintendo-blue);
+  box-shadow: 0 0 10px rgba(0, 102, 204, 0.3);
+}
+
+.weapon-yellow {
+  border-color: var(--nintendo-yellow);
+  box-shadow: 0 0 10px rgba(255, 204, 0, 0.3);
+}
+
+.weapon-item:hover:not(.disabled) {
+  transform: translateY(-8px) scale(1.05);
+  box-shadow: 0 0 25px currentColor;
+}
+
+.weapon-item:active:not(.disabled) {
+  transform: translateY(-5px) scale(1.02);
+  animation: weapon-attack 0.3s ease;
+}
+
+@keyframes weapon-attack {
+  0% {
+    transform: translateY(-8px) scale(1.05);
+  }
+  50% {
+    transform: translateY(-10px) scale(1.1);
+    box-shadow: 0 0 40px currentColor;
+  }
+  100% {
+    transform: translateY(-8px) scale(1.05);
+  }
+}
+
+.weapon-item.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.weapon-icon {
+  font-size: 40px;
+  filter: grayscale(0.2);
+  transition: filter 0.3s ease;
+}
+
+.weapon-item:hover:not(.disabled) .weapon-icon {
+  filter: grayscale(0);
+  animation: weapon-icon-spin 0.5s ease;
+}
+
+@keyframes weapon-icon-spin {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(15deg) scale(1.2);
+  }
+}
+
+.weapon-name {
+  font-size: 11px;
+  color: var(--nintendo-text);
+  font-weight: bold;
+}
+
+.weapon-power {
+  font-size: 9px;
+  color: var(--nintendo-green);
+  text-shadow: 0 0 10px var(--nintendo-green);
+  font-weight: bold;
+}
+
+.weapon-description {
+  font-size: 8px;
+  color: var(--nintendo-text-dim);
+  line-height: 1.4;
+}
+
+/* Victory Screen */
+.victory-screen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  animation: victory-appear 0.5s ease;
+}
+
+@keyframes victory-appear {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.victory-message {
+  text-align: center;
+  padding: 40px;
+  background: var(--nintendo-bg-dark);
+  border: 4px solid var(--nintendo-green);
+  box-shadow: 0 0 50px var(--nintendo-green);
+  animation: victory-bounce 0.5s ease;
+}
+
+@keyframes victory-bounce {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.victory-title {
+  font-size: 24px;
+  color: var(--nintendo-green);
+  margin-bottom: 20px;
+  text-shadow: 0 0 30px var(--nintendo-green);
+  animation: victory-glow 1s ease-in-out infinite;
+}
+
+@keyframes victory-glow {
+  0%, 100% {
+    text-shadow: 0 0 30px var(--nintendo-green);
+  }
+  50% {
+    text-shadow: 0 0 50px var(--nintendo-green), 0 0 70px var(--nintendo-green);
+  }
+}
+
+.victory-text {
+  font-size: 12px;
+  color: var(--nintendo-text);
+  margin-bottom: 30px;
+}
+
+.reset-button {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 10px;
+  padding: 12px 24px;
+  background: var(--nintendo-green);
+  color: var(--nintendo-text);
+  border: 3px solid var(--nintendo-text);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 20px var(--nintendo-green);
+}
+
+.reset-button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 30px var(--nintendo-green);
+}
+
+@media (max-width: 768px) {
+  .pipeline-stages {
+    flex-direction: column;
+  }
+
+  .stage-arrow {
+    position: static;
+    transform: rotate(90deg);
+    margin: 5px 0;
+  }
+
+  .abilities-grid,
+  .weapons-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .boss-title {
+    font-size: 14px;
+  }
+
+  .victory-title {
+    font-size: 18px;
+  }
+}
+

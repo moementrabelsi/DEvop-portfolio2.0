@@ -1,0 +1,356 @@
+.education-section {
+  position: relative;
+}
+
+.save-files-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.save-files-header {
+  text-align: center;
+  margin-bottom: 30px;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.3);
+  border: 3px solid var(--nintendo-border);
+}
+
+.save-header-title {
+  font-size: 16px;
+  color: var(--nintendo-yellow);
+  text-shadow: 0 0 15px var(--nintendo-yellow);
+  margin-bottom: 10px;
+}
+
+.save-header-subtitle {
+  font-size: 9px;
+  color: var(--nintendo-text-dim);
+}
+
+.save-files-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+  margin-bottom: 30px;
+}
+
+.save-file-slot {
+  background: rgba(0, 0, 0, 0.5);
+  border: 3px solid var(--nintendo-border);
+  padding: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 200px;
+}
+
+.save-file-slot::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--nintendo-border);
+  transition: all 0.3s ease;
+}
+
+.save-blue {
+  border-color: var(--nintendo-blue);
+}
+
+.save-blue::before {
+  background: var(--nintendo-blue);
+}
+
+.save-blue:hover,
+.save-blue.selected {
+  box-shadow: 0 0 25px rgba(0, 102, 204, 0.5);
+  border-color: var(--nintendo-blue);
+}
+
+.save-yellow {
+  border-color: var(--nintendo-yellow);
+}
+
+.save-yellow::before {
+  background: var(--nintendo-yellow);
+}
+
+.save-yellow:hover,
+.save-yellow.selected {
+  box-shadow: 0 0 25px rgba(255, 204, 0, 0.5);
+  border-color: var(--nintendo-yellow);
+}
+
+.save-green {
+  border-color: var(--nintendo-green);
+}
+
+.save-green::before {
+  background: var(--nintendo-green);
+}
+
+.save-green:hover,
+.save-green.selected {
+  box-shadow: 0 0 25px rgba(0, 204, 0, 0.5);
+  border-color: var(--nintendo-green);
+}
+
+.save-red {
+  border-color: var(--nintendo-red);
+}
+
+.save-red::before {
+  background: var(--nintendo-red);
+}
+
+.save-red:hover,
+.save-red.selected {
+  box-shadow: 0 0 25px var(--nintendo-glow);
+  border-color: var(--nintendo-red);
+}
+
+.save-file-slot.active {
+  border-width: 4px;
+  animation: active-pulse 2s ease-in-out infinite;
+}
+
+@keyframes active-pulse {
+  0%, 100% {
+    box-shadow: 0 0 25px currentColor;
+  }
+  50% {
+    box-shadow: 0 0 40px currentColor, 0 0 60px currentColor;
+  }
+}
+
+.save-file-slot:hover {
+  transform: translateY(-5px);
+}
+
+.save-file-slot.selected {
+  transform: translateY(-8px);
+  z-index: 10;
+  border-width: 4px;
+}
+
+.save-file-slot:not(.selected) .save-file-details {
+  display: none !important;
+}
+
+.save-file-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+  border-bottom: 2px solid var(--nintendo-border);
+}
+
+.save-icon {
+  font-size: 40px;
+  filter: grayscale(0.3);
+  transition: filter 0.3s ease;
+}
+
+.save-file-slot:hover .save-icon,
+.save-file-slot.selected .save-icon {
+  filter: grayscale(0);
+  animation: icon-bounce 0.6s ease;
+}
+
+@keyframes icon-bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.save-status-indicator {
+  font-size: 7px;
+}
+
+.status-active {
+  color: var(--nintendo-green);
+  text-shadow: 0 0 10px var(--nintendo-green);
+  animation: status-blink 1.5s ease-in-out infinite;
+}
+
+@keyframes status-blink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+.status-completed {
+  color: var(--nintendo-yellow);
+  text-shadow: 0 0 10px var(--nintendo-yellow);
+}
+
+.save-file-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.save-year {
+  font-size: 10px;
+  color: var(--nintendo-text-dim);
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.save-title {
+  font-size: 14px;
+  color: var(--nintendo-text);
+  font-weight: bold;
+  line-height: 1.4;
+  margin: 5px 0;
+}
+
+.save-file-slot.selected .save-title {
+  color: var(--nintendo-yellow);
+  text-shadow: 0 0 10px var(--nintendo-yellow);
+}
+
+.save-company {
+  font-size: 10px;
+  color: var(--nintendo-text-dim);
+}
+
+.save-period {
+  font-size: 8px;
+  color: var(--nintendo-text-dim);
+  opacity: 0.8;
+  margin-top: auto;
+}
+
+.save-file-details {
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 2px solid var(--nintendo-border);
+  animation: details-slide 0.3s ease;
+}
+
+@keyframes details-slide {
+  from {
+    opacity: 0;
+    max-height: 0;
+  }
+  to {
+    opacity: 1;
+    max-height: 500px;
+  }
+}
+
+.details-header {
+  font-size: 10px;
+  color: var(--nintendo-yellow);
+  text-shadow: 0 0 10px var(--nintendo-yellow);
+  margin-bottom: 15px;
+  text-align: center;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--nintendo-border);
+}
+
+.details-content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.detail-section {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.detail-label {
+  font-size: 8px;
+  color: var(--nintendo-text-dim);
+  font-weight: bold;
+}
+
+.detail-value {
+  font-size: 9px;
+  color: var(--nintendo-text);
+  line-height: 1.6;
+}
+
+.skills-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 5px;
+}
+
+.skill-badge {
+  padding: 6px 10px;
+  background: rgba(0, 0, 0, 0.4);
+  border: 2px solid var(--nintendo-border);
+  color: var(--nintendo-text);
+  font-size: 7px;
+  transition: all 0.3s ease;
+}
+
+.skill-badge:hover {
+  border-color: var(--nintendo-green);
+  box-shadow: 0 0 10px rgba(0, 204, 0, 0.3);
+  transform: translateY(-2px);
+}
+
+.save-file-footer {
+  margin-top: 15px;
+  padding-top: 10px;
+  border-top: 2px solid var(--nintendo-border);
+}
+
+.save-timestamp {
+  font-size: 7px;
+  color: var(--nintendo-text-dim);
+  opacity: 0.7;
+  text-align: center;
+}
+
+.save-files-note {
+  text-align: center;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.2);
+  border: 2px solid var(--nintendo-border);
+  font-size: 10px;
+  color: var(--nintendo-text-dim);
+}
+
+@media (max-width: 768px) {
+  .save-files-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .save-file-slot {
+    padding: 15px;
+    min-height: auto;
+  }
+
+  .save-icon {
+    font-size: 32px;
+  }
+
+  .save-title {
+    font-size: 12px;
+  }
+
+  .save-file-details {
+    margin-top: 10px;
+    padding-top: 10px;
+  }
+}

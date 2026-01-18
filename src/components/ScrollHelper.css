@@ -1,0 +1,197 @@
+/* Scroll Progress Bar */
+.scroll-progress-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 2000;
+  pointer-events: none;
+}
+
+.scroll-progress-bar {
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    var(--nintendo-red),
+    var(--nintendo-yellow),
+    var(--nintendo-green),
+    var(--nintendo-blue)
+  );
+  box-shadow: 0 0 10px var(--nintendo-green);
+  transition: width 0.1s ease;
+}
+
+/* Quick Navigation Dots */
+.quick-nav {
+  position: fixed;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1500;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: rgba(15, 15, 30, 0.8);
+  border: 2px solid var(--nintendo-border);
+  padding: 15px 8px;
+  backdrop-filter: blur(10px);
+}
+
+.quick-nav-dot {
+  width: 40px;
+  height: 40px;
+  background: rgba(0, 0, 0, 0.5);
+  border: 2px solid var(--nintendo-border);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Press Start 2P', monospace;
+  position: relative;
+}
+
+.quick-nav-dot:hover {
+  border-color: var(--nintendo-yellow);
+  box-shadow: 0 0 15px var(--nintendo-yellow);
+  transform: scale(1.1);
+  background: rgba(255, 204, 0, 0.1);
+}
+
+.quick-nav-dot.active {
+  border-color: var(--nintendo-red);
+  box-shadow: 0 0 20px var(--nintendo-glow);
+  background: rgba(230, 0, 18, 0.2);
+  transform: scale(1.15);
+}
+
+.dot-icon {
+  font-size: 16px;
+  filter: grayscale(0.5);
+  transition: filter 0.3s ease;
+}
+
+.quick-nav-dot:hover .dot-icon,
+.quick-nav-dot.active .dot-icon {
+  filter: grayscale(0);
+}
+
+.quick-nav-dot::after {
+  content: attr(title);
+  position: absolute;
+  right: 50px;
+  background: rgba(15, 15, 30, 0.95);
+  border: 2px solid var(--nintendo-yellow);
+  padding: 8px 12px;
+  font-size: 8px;
+  color: var(--nintendo-text);
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 10;
+}
+
+.quick-nav-dot:hover::after {
+  opacity: 1;
+}
+
+/* Back to Top Button */
+.back-to-top {
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  background: var(--nintendo-green);
+  border: 3px solid var(--nintendo-text);
+  color: var(--nintendo-text);
+  cursor: pointer;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 10px;
+  z-index: 1500;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  transition: all 0.3s ease;
+  box-shadow: 
+    4px 4px 0 var(--nintendo-text),
+    0 0 20px rgba(0, 204, 0, 0.5);
+  animation: back-to-top-appear 0.3s ease;
+}
+
+@keyframes back-to-top-appear {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.back-to-top:hover {
+  transform: translateY(-5px);
+  box-shadow: 
+    2px 2px 0 var(--nintendo-text),
+    0 0 30px rgba(0, 204, 0, 0.7);
+}
+
+.back-to-top:active {
+  transform: translateY(-2px);
+  box-shadow: 
+    0 0 0 var(--nintendo-text),
+    0 0 40px rgba(0, 204, 0, 0.8);
+}
+
+.back-to-top-icon {
+  font-size: 20px;
+  line-height: 1;
+}
+
+.back-to-top-text {
+  font-size: 8px;
+  line-height: 1;
+}
+
+@media (max-width: 768px) {
+  .quick-nav {
+    right: 10px;
+    padding: 10px 5px;
+    gap: 8px;
+  }
+
+  .quick-nav-dot {
+    width: 35px;
+    height: 35px;
+  }
+
+  .dot-icon {
+    font-size: 14px;
+  }
+
+  .quick-nav-dot::after {
+    display: none;
+  }
+
+  .back-to-top {
+    width: 50px;
+    height: 50px;
+    bottom: 70px;
+    right: 10px;
+  }
+
+  .back-to-top-icon {
+    font-size: 18px;
+  }
+
+  .back-to-top-text {
+    font-size: 7px;
+  }
+}
+

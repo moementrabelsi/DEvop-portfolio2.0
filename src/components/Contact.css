@@ -1,0 +1,345 @@
+.contact-section {
+  position: relative;
+  padding-bottom: 40px;
+}
+
+.end-game-message {
+  max-width: 1200px;
+  margin: 0 auto 40px;
+  text-align: center;
+}
+
+.congratulations-box {
+  background: rgba(0, 0, 0, 0.5);
+  border: 4px solid var(--nintendo-green);
+  padding: 40px;
+  box-shadow: 
+    0 0 40px rgba(0, 204, 0, 0.5),
+    inset 0 0 40px rgba(0, 204, 0, 0.1);
+  animation: congratulations-glow 2s ease-in-out infinite;
+  position: relative;
+  overflow: hidden;
+}
+
+@keyframes congratulations-glow {
+  0%, 100% {
+    box-shadow: 
+      0 0 40px rgba(0, 204, 0, 0.5),
+      inset 0 0 40px rgba(0, 204, 0, 0.1);
+  }
+  50% {
+    box-shadow: 
+      0 0 60px rgba(0, 204, 0, 0.8),
+      inset 0 0 60px rgba(0, 204, 0, 0.2);
+  }
+}
+
+.congratulations-box::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent,
+    rgba(0, 204, 0, 0.1),
+    transparent
+  );
+  animation: shine 3s infinite;
+}
+
+@keyframes shine {
+  0% {
+    transform: translateX(-100%) translateY(-100%) rotate(45deg);
+  }
+  100% {
+    transform: translateX(100%) translateY(100%) rotate(45deg);
+  }
+}
+
+.congratulations-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.congratulations-icon {
+  font-size: 60px;
+  animation: icon-bounce 2s ease-in-out infinite;
+  filter: drop-shadow(0 0 20px var(--nintendo-green));
+}
+
+@keyframes icon-bounce {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-10px) rotate(-10deg);
+  }
+  50% {
+    transform: translateY(-15px) rotate(0deg);
+  }
+  75% {
+    transform: translateY(-10px) rotate(10deg);
+  }
+}
+
+.congratulations-text {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.congratulations-title {
+  font-size: 24px;
+  color: var(--nintendo-green);
+  text-shadow: 
+    0 0 20px var(--nintendo-green),
+    0 0 40px var(--nintendo-green);
+  font-weight: bold;
+  animation: text-pulse 2s ease-in-out infinite;
+}
+
+@keyframes text-pulse {
+  0%, 100% {
+    text-shadow: 
+      0 0 20px var(--nintendo-green),
+      0 0 40px var(--nintendo-green);
+  }
+  50% {
+    text-shadow: 
+      0 0 30px var(--nintendo-green),
+      0 0 60px var(--nintendo-green),
+      0 0 80px var(--nintendo-green);
+  }
+}
+
+.congratulations-subtitle {
+  font-size: 14px;
+  color: var(--nintendo-text);
+  text-shadow: 0 0 10px var(--nintendo-text);
+}
+
+.contact-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.contact-info {
+  padding: 20px;
+}
+
+.contact-header {
+  margin-bottom: 30px;
+}
+
+.contact-header h3 {
+  font-size: 16px;
+  color: var(--nintendo-yellow);
+  margin-bottom: 15px;
+  text-shadow: 0 0 10px var(--nintendo-yellow);
+}
+
+.contact-subtitle {
+  font-size: 10px;
+  color: var(--nintendo-text-dim);
+  line-height: 1.8;
+}
+
+.contact-details {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 15px;
+  background: rgba(0, 0, 0, 0.3);
+  border: 2px solid var(--nintendo-border);
+  color: var(--nintendo-text);
+  transition: all 0.3s ease;
+  position: relative;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+  font-family: 'Press Start 2P', monospace;
+}
+
+.contact-item:hover {
+  border-color: var(--nintendo-blue);
+  background: rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 15px rgba(0, 102, 204, 0.3);
+  transform: translateY(-2px);
+}
+
+.contact-icon {
+  font-size: 24px;
+  filter: grayscale(0.3);
+  transition: all 0.3s ease;
+}
+
+.contact-item:hover .contact-icon {
+  filter: grayscale(0);
+  transform: scale(1.1);
+}
+
+.contact-item-content {
+  flex: 1;
+}
+
+.contact-label {
+  font-size: 9px;
+  color: var(--nintendo-text-dim);
+  margin-bottom: 5px;
+  text-transform: uppercase;
+}
+
+.contact-value {
+  font-size: 10px;
+  color: var(--nintendo-text);
+  word-break: break-word;
+}
+
+.contact-form-container {
+  padding: 20px;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.form-group label {
+  font-size: 9px;
+  color: var(--nintendo-yellow);
+  text-transform: uppercase;
+  text-shadow: 0 0 10px var(--nintendo-yellow);
+}
+
+.pixel-input {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 10px;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.5);
+  border: 3px solid var(--nintendo-border);
+  color: var(--nintendo-text);
+  transition: all 0.3s ease;
+  resize: vertical;
+}
+
+.pixel-input:focus {
+  outline: none;
+  border-color: var(--nintendo-blue);
+  box-shadow: 0 0 20px rgba(0, 102, 204, 0.4);
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.pixel-input::placeholder {
+  color: var(--nintendo-text-dim);
+  opacity: 0.5;
+}
+
+.submit-button {
+  margin-top: 10px;
+  align-self: flex-start;
+  background: var(--nintendo-green);
+  border-color: var(--nintendo-text);
+}
+
+.submit-button:hover {
+  background: var(--nintendo-green);
+  box-shadow: 
+    2px 2px 0 var(--nintendo-text),
+    0 0 20px rgba(0, 204, 0, 0.6);
+}
+
+.contact-footer {
+  margin-top: 60px;
+  padding-top: 30px;
+  border-top: 3px solid var(--nintendo-border);
+  text-align: center;
+}
+
+.contact-footer p {
+  font-size: 9px;
+  color: var(--nintendo-text-dim);
+  margin-bottom: 10px;
+}
+
+.footer-subtitle {
+  font-size: 8px;
+  color: var(--nintendo-text-dim);
+  opacity: 0.7;
+}
+
+@media (max-width: 968px) {
+  .contact-container {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .congratulations-box {
+    padding: 30px 20px;
+  }
+
+  .congratulations-icon {
+    font-size: 48px;
+  }
+
+  .congratulations-title {
+    font-size: 18px;
+  }
+
+  .congratulations-subtitle {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 768px) {
+  .contact-item {
+    padding: 12px;
+  }
+
+  .contact-icon {
+    font-size: 20px;
+  }
+
+  .contact-label,
+  .contact-value {
+    font-size: 8px;
+  }
+
+  .congratulations-box {
+    flex-direction: column;
+    padding: 25px 15px;
+  }
+
+  .congratulations-icon {
+    font-size: 40px;
+  }
+
+  .congratulations-title {
+    font-size: 16px;
+  }
+
+  .congratulations-subtitle {
+    font-size: 10px;
+  }
+}
