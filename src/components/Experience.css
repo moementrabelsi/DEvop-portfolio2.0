@@ -206,10 +206,24 @@
   box-shadow: 0 0 10px var(--nintendo-blue);
 }
 
+@media (max-width: 1024px) {
+  .experience-container {
+    gap: 30px;
+  }
+
+  .experience-timeline {
+    max-width: 100%;
+  }
+
+  .timeline-item {
+    padding: 12px;
+  }
+}
+
 @media (max-width: 968px) {
   .experience-container {
     grid-template-columns: 1fr;
-    gap: 30px;
+    gap: 25px;
   }
 
   .experience-timeline {
@@ -217,6 +231,8 @@
     overflow-x: auto;
     padding-left: 0;
     padding-bottom: 20px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
   }
 
   .experience-timeline::before {
@@ -227,10 +243,15 @@
     min-width: 200px;
     margin-right: 20px;
     margin-bottom: 0;
+    flex-shrink: 0;
   }
 
   .timeline-marker {
     display: none;
+  }
+
+  .experience-card {
+    padding: 25px;
   }
 }
 
@@ -245,6 +266,39 @@
 
   .card-description li {
     font-size: 9px;
+  }
+
+  .card-meta {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .tech-tags {
+    gap: 8px;
+  }
+
+  .tech-tag {
+    font-size: 7px;
+    padding: 6px 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .timeline-item {
+    min-width: 180px;
+    padding: 10px;
+  }
+
+  .timeline-title {
+    font-size: 9px;
+  }
+
+  .experience-card {
+    padding: 15px;
+  }
+
+  .card-title {
+    font-size: 12px;
   }
 }
 

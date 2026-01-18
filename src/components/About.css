@@ -393,24 +393,71 @@
   color: var(--nintendo-text-dim);
 }
 
+@media (max-width: 1024px) {
+  .player-profile {
+    padding: 25px;
+  }
+
+  .profile-header {
+    gap: 20px;
+  }
+
+  .avatar-frame {
+    width: 100px;
+    height: 100px;
+  }
+
+  .player-name {
+    font-size: 16px;
+  }
+}
+
 @media (max-width: 768px) {
   .profile-header {
     flex-direction: column;
     text-align: center;
+    gap: 20px;
   }
 
   .player-avatar {
     align-self: center;
   }
 
+  .avatar-frame {
+    width: 90px;
+    height: 90px;
+  }
+
+  .level-badge {
+    font-size: 8px;
+    padding: 4px 8px;
+  }
+
+  .player-name {
+    font-size: 14px;
+  }
+
+  .player-title {
+    font-size: 10px;
+  }
+
   .profile-tabs {
     flex-wrap: wrap;
     justify-content: center;
+    gap: 8px;
   }
 
   .tab-button {
-    font-size: 8px;
-    padding: 8px 15px;
+    font-size: 7px;
+    padding: 8px 12px;
+  }
+
+  .attributes-list {
+    gap: 12px;
+  }
+
+  .attribute-item {
+    padding: 12px;
   }
 
   .achievements-grid {
@@ -420,5 +467,37 @@
 
   .quest-header {
     flex-wrap: wrap;
+  }
+
+  .quest-item {
+    padding: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .player-profile {
+    padding: 20px 15px;
+  }
+
+  .avatar-frame {
+    width: 80px;
+    height: 80px;
+  }
+
+  .player-name {
+    font-size: 12px;
+  }
+
+  .tab-button {
+    font-size: 6px;
+    padding: 6px 10px;
+  }
+
+  .panel-title {
+    font-size: 11px;
+  }
+
+  .achievements-grid {
+    grid-template-columns: 1fr;
   }
 }

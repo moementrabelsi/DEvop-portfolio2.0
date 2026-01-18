@@ -120,6 +120,8 @@
   align-items: center;
   gap: 6px;
   white-space: nowrap;
+  min-height: 44px;
+  touch-action: manipulation;
 }
 
 .nav-icon {
@@ -291,6 +293,21 @@
 
 .menu-toggle.active span:nth-child(3) {
   transform: rotate(-45deg) translate(7px, -7px);
+}
+
+@media (max-width: 1024px) {
+  .nav-menu {
+    gap: 6px;
+  }
+
+  .nav-link {
+    font-size: 7px;
+    padding: 7px 11px;
+  }
+
+  .nav-icon {
+    font-size: 9px;
+  }
 }
 
 @media (max-width: 968px) {

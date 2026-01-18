@@ -82,6 +82,9 @@ section h2::after {
     4px 4px 0 var(--nintendo-text),
     0 0 10px var(--nintendo-glow);
   position: relative;
+  min-height: 44px;
+  min-width: 44px;
+  touch-action: manipulation;
 }
 
 .pixel-button:hover {
@@ -247,14 +250,43 @@ section h2::after {
   }
 }
 
-/* Responsive */
+/* Responsive - Tablet */
+@media (max-width: 1024px) {
+  .main-content {
+    padding: 15px;
+  }
+
+  section {
+    padding: 50px 20px;
+    margin: 30px 0;
+  }
+
+  section h2 {
+    font-size: 20px;
+  }
+
+  .pixel-button {
+    font-size: 9px;
+    padding: 10px 20px;
+  }
+}
+
+/* Responsive - Mobile */
 @media (max-width: 768px) {
   section {
-    padding: 40px 15px;
+    padding: 30px 15px;
+    margin: 20px 0;
   }
   
   section h2 {
-    font-size: 18px;
+    font-size: 16px;
+    letter-spacing: 1px;
+    padding-bottom: 10px;
+  }
+
+  section h2::after {
+    width: 60px;
+    height: 2px;
   }
   
   .main-content {
@@ -264,6 +296,53 @@ section h2::after {
   .shortcuts-hint {
     bottom: 10px;
     right: 10px;
+    font-size: 7px;
+    padding: 8px 12px;
+  }
+
+  .pixel-button {
+    font-size: 8px;
+    padding: 10px 16px;
+  }
+
+  .easter-egg-content {
+    padding: 30px 20px;
+    margin: 20px;
+  }
+
+  .easter-egg-content h2 {
+    font-size: 16px;
+  }
+
+  .easter-egg-content p {
+    font-size: 10px;
+  }
+}
+
+/* Responsive - Small Mobile */
+@media (max-width: 480px) {
+  section {
+    padding: 25px 10px;
+    margin: 15px 0;
+  }
+
+  section h2 {
+    font-size: 14px;
+    letter-spacing: 0.5px;
+  }
+
+  .main-content {
+    padding: 5px;
+  }
+
+  .shortcuts-hint {
+    bottom: 5px;
+    right: 5px;
+    font-size: 6px;
+    padding: 6px 10px;
+  }
+
+  .pixel-button {
     font-size: 7px;
     padding: 8px 12px;
   }

@@ -289,6 +289,16 @@
   opacity: 0.7;
 }
 
+@media (max-width: 1024px) {
+  .contact-container {
+    gap: 30px;
+  }
+
+  .congratulations-box {
+    padding: 35px 25px;
+  }
+}
+
 @media (max-width: 968px) {
   .contact-container {
     grid-template-columns: 1fr;
@@ -313,8 +323,14 @@
 }
 
 @media (max-width: 768px) {
+  .contact-info,
+  .contact-form-container {
+    padding: 15px;
+  }
+
   .contact-item {
     padding: 12px;
+    gap: 12px;
   }
 
   .contact-icon {
@@ -341,5 +357,68 @@
 
   .congratulations-subtitle {
     font-size: 10px;
+  }
+
+  .contact-form {
+    gap: 15px;
+  }
+
+  .form-group label {
+    font-size: 8px;
+  }
+
+  .pixel-input {
+    font-size: 9px;
+    padding: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-info,
+  .contact-form-container {
+    padding: 10px;
+  }
+
+  .contact-item {
+    padding: 10px;
+    gap: 10px;
+  }
+
+  .contact-icon {
+    font-size: 18px;
+  }
+
+  .contact-label {
+    font-size: 7px;
+  }
+
+  .contact-value {
+    font-size: 7px;
+  }
+
+  .congratulations-box {
+    padding: 20px 12px;
+  }
+
+  .congratulations-icon {
+    font-size: 32px;
+  }
+
+  .congratulations-title {
+    font-size: 14px;
+  }
+
+  .congratulations-subtitle {
+    font-size: 9px;
+  }
+
+  .pixel-input {
+    font-size: 8px;
+    padding: 8px;
+  }
+
+  .submit-button {
+    font-size: 7px;
+    padding: 8px 16px;
   }
 }

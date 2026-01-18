@@ -361,6 +361,21 @@
   filter: grayscale(0);
 }
 
+@media (max-width: 1024px) {
+  .inventory-container {
+    gap: 30px;
+  }
+
+  .inventory-category {
+    padding: 20px;
+  }
+
+  .items-grid {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 15px;
+  }
+}
+
 @media (max-width: 768px) {
   .items-grid {
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
@@ -386,5 +401,42 @@
 
   .additional-info {
     grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .category-title {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .inventory-category {
+    padding: 15px;
+  }
+
+  .items-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .inventory-item {
+    padding: 12px;
+    min-height: 140px;
+  }
+
+  .item-icon {
+    font-size: 28px;
+  }
+
+  .item-name {
+    font-size: 9px;
+  }
+
+  .item-description {
+    font-size: 6px;
+  }
+
+  .category-title {
+    font-size: 12px;
   }
 }

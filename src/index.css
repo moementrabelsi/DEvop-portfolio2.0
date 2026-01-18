@@ -23,6 +23,18 @@ body {
   color: var(--nintendo-text);
   overflow-x: hidden;
   line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Prevent horizontal scroll */
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
 }
 
 #root {
@@ -116,6 +128,18 @@ body {
   box-shadow: 
     inset 0 0 20px rgba(230, 0, 18, 0.3),
     0 0 40px rgba(230, 0, 18, 0.2);
+}
+
+@media (max-width: 768px) {
+  .retro-border {
+    border-width: 4px;
+  }
+}
+
+@media (max-width: 480px) {
+  .retro-border {
+    border-width: 3px;
+  }
 }
 
 

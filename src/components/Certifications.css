@@ -266,6 +266,13 @@
   color: var(--nintendo-text-dim);
 }
 
+@media (max-width: 1024px) {
+  .certifications-grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+  }
+}
+
 @media (max-width: 768px) {
   .certifications-grid {
     grid-template-columns: 1fr;
@@ -303,6 +310,33 @@
   .status-completed,
   .status-progress {
     padding: 6px 10px;
+    font-size: 7px;
+  }
+}
+
+@media (max-width: 480px) {
+  .cert-card {
+    padding: 15px;
+  }
+
+  .cert-icon-wrapper {
+    width: 45px;
+    height: 45px;
+  }
+
+  .cert-icon-large {
+    font-size: 24px;
+  }
+
+  .cert-name {
+    font-size: 10px;
+  }
+
+  .cert-issuer {
+    font-size: 7px;
+  }
+
+  .cert-date {
     font-size: 7px;
   }
 }

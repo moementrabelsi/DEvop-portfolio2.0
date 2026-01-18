@@ -152,9 +152,21 @@
   font-size: 8px;
 }
 
+@media (max-width: 1024px) {
+  .shortcuts-modal {
+    max-width: 500px;
+    padding: 25px;
+  }
+}
+
 @media (max-width: 768px) {
   .shortcuts-modal {
     padding: 20px;
+    max-width: 90%;
+  }
+
+  .shortcuts-header h2 {
+    font-size: 14px;
   }
 
   .shortcut-item {
@@ -165,6 +177,26 @@
 
   .shortcut-action {
     text-align: left;
+  }
+}
+
+@media (max-width: 480px) {
+  .shortcuts-modal {
+    padding: 15px;
+  }
+
+  .shortcuts-header h2 {
+    font-size: 12px;
+  }
+
+  .shortcut-key kbd {
+    font-size: 8px;
+    padding: 6px 10px;
+    min-width: 35px;
+  }
+
+  .shortcut-action {
+    font-size: 8px;
   }
 }
 

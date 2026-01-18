@@ -476,9 +476,34 @@
   box-shadow: 0 0 30px var(--nintendo-green);
 }
 
+@media (max-width: 1024px) {
+  .pipeline-stages {
+    gap: 8px;
+  }
+
+  .pipeline-stage {
+    min-width: 120px;
+    padding: 12px;
+  }
+
+  .stage-icon {
+    font-size: 28px;
+  }
+
+  .stage-name {
+    font-size: 9px;
+  }
+}
+
 @media (max-width: 768px) {
   .pipeline-stages {
     flex-direction: column;
+    gap: 10px;
+  }
+
+  .pipeline-stage {
+    width: 100%;
+    min-width: auto;
   }
 
   .stage-arrow {
@@ -496,8 +521,43 @@
     font-size: 14px;
   }
 
+  .boss-arena {
+    padding: 20px;
+  }
+
   .victory-title {
     font-size: 18px;
+  }
+
+  .victory-message {
+    padding: 30px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .pipeline-map {
+    padding: 15px;
+  }
+
+  .map-title {
+    font-size: 12px;
+  }
+
+  .boss-title {
+    font-size: 12px;
+  }
+
+  .boss-arena {
+    padding: 15px;
+  }
+
+  .boss-ability,
+  .weapon-item {
+    padding: 15px;
+  }
+
+  .victory-title {
+    font-size: 14px;
   }
 }
 
