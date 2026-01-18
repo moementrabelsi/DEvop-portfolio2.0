@@ -496,20 +496,46 @@
 }
 
 @media (max-width: 768px) {
+  .pipeline-map {
+    overflow-x: auto;
+    overflow-y: visible;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: var(--nintendo-border) rgba(0, 0, 0, 0.3);
+  }
+
+  .pipeline-map::-webkit-scrollbar {
+    height: 8px;
+  }
+
+  .pipeline-map::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.3);
+  }
+
+  .pipeline-map::-webkit-scrollbar-thumb {
+    background: var(--nintendo-border);
+    border-radius: 4px;
+  }
+
   .pipeline-stages {
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
     gap: 10px;
+    padding-bottom: 10px;
+    min-width: min-content;
   }
 
   .pipeline-stage {
-    width: 100%;
-    min-width: auto;
+    flex: 0 0 auto;
+    width: 120px;
+    min-width: 120px;
   }
 
   .stage-arrow {
     position: static;
-    transform: rotate(90deg);
-    margin: 5px 0;
+    transform: none;
+    margin: 0;
   }
 
   .abilities-grid,

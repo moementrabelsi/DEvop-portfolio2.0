@@ -452,20 +452,47 @@
 }
 
 @media (max-width: 968px) {
+  .world-map-overview {
+    overflow-x: auto;
+    overflow-y: visible;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: var(--nintendo-border) rgba(0, 0, 0, 0.3);
+  }
+
+  .world-map-overview::-webkit-scrollbar {
+    height: 8px;
+  }
+
+  .world-map-overview::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.3);
+  }
+
+  .world-map-overview::-webkit-scrollbar-thumb {
+    background: var(--nintendo-border);
+    border-radius: 4px;
+  }
+
   .levels-map {
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
     gap: 15px;
+    padding-bottom: 10px;
+    min-width: min-content;
   }
 
   .level-node {
-    width: 100%;
-    max-width: 300px;
+    flex: 0 0 auto;
+    width: 200px;
+    min-width: 200px;
+    max-width: none;
   }
 
   .level-connector {
     position: static;
-    transform: rotate(90deg);
-    margin: 10px 0;
+    transform: none;
+    margin: 0;
   }
 
   .level-content {
