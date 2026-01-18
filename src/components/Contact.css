@@ -173,6 +173,8 @@
   width: 100%;
   text-align: left;
   font-family: 'Press Start 2P', monospace;
+  min-height: 60px;
+  touch-action: manipulation;
 }
 
 .contact-item:hover {
