@@ -123,10 +123,34 @@ To customize the portfolio with your own information:
 
 ## Deployment
 
-This portfolio can be deployed to:
-- **Netlify** - Connect your GitHub repo
-- **Vercel** - Deploy with one click
-- **GitHub Pages** - Use the build output
+### Vercel (Recommended)
+
+1. **Connect to Vercel:**
+   - Go to [vercel.com](https://vercel.com)
+   - Sign in with your GitHub account
+   - Click "New Project"
+   - Import your repository: `moementrabelsi/DEvop-portfolio2.0`
+
+2. **Configure Project:**
+   - Framework Preset: **Vite**
+   - Root Directory: `./` (default)
+   - Build Command: `npm run build` (auto-detected)
+   - Output Directory: `dist` (auto-detected)
+   - Install Command: `npm install` (auto-detected)
+
+3. **Deploy:**
+   - Click "Deploy"
+   - Vercel will automatically build and deploy your portfolio
+   - Your site will be live at `your-project-name.vercel.app`
+
+4. **Custom Domain (Optional):**
+   - Go to Project Settings → Domains
+   - Add your custom domain
+
+### Other Deployment Options
+
+- **Netlify** - Connect your GitHub repo and deploy
+- **GitHub Pages** - Use the build output from `dist` folder
 - **AWS S3 + CloudFront** - For cloud-native deployment
 
 ## License
