@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import emailjs from '@emailjs/browser'
 import { trackContactAction, trackLinkClick } from '../utils/analytics'
 import './Contact.css'
 
@@ -8,21 +9,84 @@ function Contact() {
     email: '',
     message: ''
   })
+  const [isLoading, setIsLoading] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState(null) // 'success' or 'error'
+  const [statusMessage, setStatusMessage] = useState('')
 
   const handleChange = (e) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
     })
+    // Clear status message when user starts typing
+    if (submitStatus) {
+      setSubmitStatus(null)
+      setStatusMessage('')
+    }
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    trackContactAction('form_submit', 'email')
-    // In a real application, you would send this to a backend
-    const mailtoLink = `mailto:abdelmoementrabelsi@gmail.com?subject=Contact from Portfolio&body=Name: ${formData.name}%0AEmail: ${formData.email}%0A%0AMessage: ${formData.message}`
-    window.location.href = mailtoLink
-    setFormData({ name: '', email: '', message: '' })
+    
+    // Get EmailJS configuration from environment variables
+    const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID
+    const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID
+    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+
+    // Validate environment variables
+    if (!serviceId || !templateId || !publicKey) {
+      setSubmitStatus('error')
+      setStatusMessage('Email service is not configured. Please contact the site administrator.')
+      trackContactAction('form_submit_error', 'emailjs_config_missing')
+      return
+    }
+
+    setIsLoading(true)
+    setSubmitStatus(null)
+    setStatusMessage('')
+
+    try {
+      // Initialize EmailJS with public key
+      emailjs.init(publicKey)
+
+      // Send email using EmailJS
+      const result = await emailjs.send(
+        serviceId,
+        templateId,
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          message: formData.message,
+          to_email: 'abdelmoementrabelsi@gmail.com'
+        }
+      )
+
+      // Success
+      if (result.status === 200) {
+        setSubmitStatus('success')
+        setStatusMessage('Message sent successfully! I\'ll get back to you soon.')
+        trackContactAction('form_submit', 'emailjs')
+        setFormData({ name: '', email: '', message: '' })
+        
+        // Clear success message after 5 seconds
+        setTimeout(() => {
+          setSubmitStatus(null)
+          setStatusMessage('')
+        }, 5000)
+      } else {
+        throw new Error('Failed to send message')
+      }
+    } catch (error) {
+      console.error('EmailJS Error:', error)
+      setSubmitStatus('error')
+      setStatusMessage(
+        error.text || 
+        'Failed to send message. Please try again or contact me directly via email.'
+      )
+      trackContactAction('form_submit_error', 'emailjs')
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   const contactInfo = [
@@ -145,9 +209,22 @@ function Contact() {
               ></textarea>
             </div>
 
-            <button type="submit" className="pixel-button submit-button">
-              SEND MESSAGE
+            <button 
+              type="submit" 
+              className="pixel-button submit-button"
+              disabled={isLoading}
+            >
+              {isLoading ? 'SENDING...' : 'SEND MESSAGE'}
             </button>
+
+            {submitStatus && (
+              <div className={`form-status ${submitStatus}`}>
+                <span className="status-icon">
+                  {submitStatus === 'success' ? '✓' : '✗'}
+                </span>
+                <span className="status-message">{statusMessage}</span>
+              </div>
+            )}
           </form>
         </div>
       </div>

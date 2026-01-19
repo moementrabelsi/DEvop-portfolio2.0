@@ -265,11 +265,63 @@
   border-color: var(--nintendo-text);
 }
 
-.submit-button:hover {
+.submit-button:hover:not(:disabled) {
   background: var(--nintendo-green);
   box-shadow: 
     2px 2px 0 var(--nintendo-text),
     0 0 20px rgba(0, 204, 0, 0.6);
+}
+
+.submit-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.form-status {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px;
+  border: 3px solid;
+  font-size: 9px;
+  animation: status-appear 0.3s ease-out;
+  margin-top: 10px;
+}
+
+@keyframes status-appear {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.form-status.success {
+  background: rgba(0, 204, 0, 0.1);
+  border-color: var(--nintendo-green);
+  color: var(--nintendo-green);
+  box-shadow: 0 0 15px rgba(0, 204, 0, 0.3);
+}
+
+.form-status.error {
+  background: rgba(204, 0, 0, 0.1);
+  border-color: #cc0000;
+  color: #ff6666;
+  box-shadow: 0 0 15px rgba(204, 0, 0, 0.3);
+}
+
+.status-icon {
+  font-size: 14px;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+.status-message {
+  flex: 1;
+  line-height: 1.4;
 }
 
 .contact-footer {

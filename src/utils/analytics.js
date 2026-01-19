@@ -2,24 +2,31 @@
 
 // Initialize Google Analytics
 export const initGA = (measurementId) => {
-  if (typeof window !== 'undefined' && measurementId) {
-    // Load gtag script
-    const script1 = document.createElement('script')
-    script1.async = true
-    script1.src = `https://www.googletagmanager.com/gtag/js?id=${measurementId}`
-    document.head.appendChild(script1)
+  try {
+    if (typeof window !== 'undefined' && measurementId) {
+      // Load gtag script
+      const script1 = document.createElement('script')
+      script1.async = true
+      script1.src = `https://www.googletagmanager.com/gtag/js?id=${measurementId}`
+      script1.onerror = () => {
+        console.debug('Failed to load Google Analytics script')
+      }
+      document.head.appendChild(script1)
 
-    // Initialize gtag
-    window.dataLayer = window.dataLayer || []
-    function gtag() {
-      window.dataLayer.push(arguments)
+      // Initialize gtag
+      window.dataLayer = window.dataLayer || []
+      function gtag() {
+        window.dataLayer.push(arguments)
+      }
+      window.gtag = gtag
+      gtag('js', new Date())
+      gtag('config', measurementId, {
+        page_path: window.location.pathname,
+        send_page_view: true
+      })
     }
-    window.gtag = gtag
-    gtag('js', new Date())
-    gtag('config', measurementId, {
-      page_path: window.location.pathname,
-      send_page_view: true
-    })
+  } catch (error) {
+    console.debug('Google Analytics initialization error:', error)
   }
 }
 
