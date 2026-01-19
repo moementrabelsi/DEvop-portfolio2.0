@@ -14,7 +14,7 @@ function Navigation({ currentSection }) {
 
   const portfolioItems = [
     { id: 'experience', label: 'EXPERIENCE', icon: '💼' },
-    { id: 'education', label: 'EDUCATION', icon: '🎓' },
+    { id: 'education', label: 'MILESTONES', icon: '🎓' },
     { id: 'certifications', label: 'CERTIFICATIONS', icon: '🏆' },
     { id: 'skills', label: 'SKILLS', icon: '⚙️' },
     { id: 'projects', label: 'PROJECTS', icon: '🗺️' },

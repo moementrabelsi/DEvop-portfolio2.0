@@ -70,7 +70,7 @@ function Education() {
 
   return (
     <section id="education" className="education-section">
-      <h2>SAVE FILES</h2>
+      <h2>SAVE FILES - MILESTONES</h2>
       <div className="save-files-container">
         <div className="save-files-header">
           <div className="save-header-title">SELECT SAVE FILE</div>
