@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { trackContactAction, trackLinkClick } from '../utils/analytics'
 import './Contact.css'
 
 function Contact() {
@@ -17,6 +18,7 @@ function Contact() {
 
   const handleSubmit = (e) => {
     e.preventDefault()
+    trackContactAction('form_submit', 'email')
     // In a real application, you would send this to a backend
     const mailtoLink = `mailto:abdelmoementrabelsi@gmail.com?subject=Contact from Portfolio&body=Name: ${formData.name}%0AEmail: ${formData.email}%0A%0AMessage: ${formData.message}`
     window.location.href = mailtoLink
@@ -83,6 +85,8 @@ function Contact() {
                 key={index}
                 className="contact-item"
                 onClick={() => {
+                  trackContactAction('click', info.label.toLowerCase())
+                  trackLinkClick(info.link, info.label)
                   if (info.link.startsWith('http')) {
                     window.open(info.link, '_blank', 'noopener,noreferrer')
                   } else {

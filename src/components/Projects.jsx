@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react'
+import { trackProjectView } from '../utils/analytics'
 import './Projects.css'
 
 function Projects() {
@@ -142,6 +143,10 @@ function Projects() {
     } else {
       // Open the selected level
       setSelectedLevel(levelId)
+      const level = levels.find(l => l.id === levelId)
+      if (level) {
+        trackProjectView(level.title)
+      }
     }
   }
 

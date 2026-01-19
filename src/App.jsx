@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback, Suspense, lazy } from 'react'
 import Navigation from './components/Navigation'
 import KeyboardShortcuts from './components/KeyboardShortcuts'
 import ScrollHelper from './components/ScrollHelper'
+import { initGA, trackPageView, trackSectionView, trackShortcutUsage, trackTimeOnPage, trackEvent, trackButtonClick } from './utils/analytics'
 import './App.css'
 
 // Lazy load components for better performance
@@ -24,6 +25,41 @@ function App() {
 
   const sections = ['hero', 'about', 'experience', 'education', 'certifications', 'skills', 'projects', 'boss-fight', 'contact']
   const konamiSequence = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a']
+
+  // Initialize Google Analytics on mount
+  useEffect(() => {
+    try {
+      const measurementId = import.meta.env.VITE_GA_MEASUREMENT_ID
+      if (measurementId) {
+        initGA(measurementId)
+        trackPageView(window.location.pathname)
+      }
+    } catch (error) {
+      console.debug('Analytics initialization error:', error)
+    }
+  }, [])
+
+  // Track section views
+  useEffect(() => {
+    try {
+      if (currentSection) {
+        trackSectionView(currentSection)
+      }
+    } catch (error) {
+      console.debug('Section tracking error:', error)
+    }
+  }, [currentSection])
+
+  // Track time on page
+  useEffect(() => {
+    const startTime = Date.now()
+    return () => {
+      const timeSpent = Math.floor((Date.now() - startTime) / 1000)
+      if (timeSpent > 5) { // Only track if user spent more than 5 seconds
+        trackTimeOnPage(timeSpent)
+      }
+    }
+  }, [])
 
   // Throttle scroll handler for better performance
   const handleScroll = useCallback(() => {
@@ -82,6 +118,7 @@ function App() {
         const element = document.getElementById(sectionId)
         if (element) {
           element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+          trackShortcutUsage(`number_${num}`)
         }
       }
 
@@ -89,12 +126,14 @@ function App() {
       if (e.key === 'Home') {
         e.preventDefault()
         window.scrollTo({ top: 0, behavior: 'smooth' })
+        trackShortcutUsage('home')
       }
 
       // End key - scroll to bottom
       if (e.key === 'End') {
         e.preventDefault()
         window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })
+        trackShortcutUsage('end')
       }
 
       // Arrow keys for section navigation
@@ -104,6 +143,7 @@ function App() {
         if (currentIndex < sections.length - 1) {
           const nextSection = sections[currentIndex + 1]
           document.getElementById(nextSection)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+          trackShortcutUsage('arrow_down')
         }
       }
 
@@ -113,6 +153,7 @@ function App() {
         if (currentIndex > 0) {
           const prevSection = sections[currentIndex - 1]
           document.getElementById(prevSection)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+          trackShortcutUsage('arrow_up')
         }
       }
 
@@ -120,6 +161,7 @@ function App() {
       if (e.key === '?' || (e.key === '/' && e.shiftKey)) {
         e.preventDefault()
         setShowShortcuts(prev => !prev)
+        trackShortcutUsage('question_mark')
       }
 
       // ESC key to close shortcuts
@@ -161,14 +203,25 @@ function App() {
           <div className="easter-egg-content">
             <h2>🎮 KONAMI CODE ACTIVATED! 🎮</h2>
             <p>You found the secret!</p>
-            <button onClick={() => setEasterEgg(false)} className="pixel-button">CLOSE</button>
+            <button 
+              onClick={() => {
+                setEasterEgg(false)
+                trackEvent('easter_egg', { action: 'konami_code_activated' })
+              }} 
+              className="pixel-button"
+            >
+              CLOSE
+            </button>
           </div>
         </div>
       )}
 
       <button 
         className="shortcuts-hint"
-        onClick={() => setShowShortcuts(true)}
+        onClick={() => {
+          setShowShortcuts(true)
+          trackButtonClick('shortcuts_hint', 'header')
+        }}
         title="Click to view keyboard shortcuts"
       >
         Press <kbd>?</kbd> for shortcuts
