@@ -47,8 +47,8 @@ function Experience() {
     },
     {
       title: 'Front-End Developer Intern',
-      company: 'Inoui Agency',
-      location: 'France',
+      company: 'BlueOcean Gaming',
+      location: 'Slovenia',
       period: 'April 2023 – October 2023',
       description: [
         'Frontend refactoring and optimization using React.js to enhance performance and user experience',

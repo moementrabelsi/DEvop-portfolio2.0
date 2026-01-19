@@ -34,6 +34,18 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  will-change: transform;
+  transform: translateZ(0);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+
+.avatar-container:hover {
+  transform: scale(1.05) translateZ(0);
+  box-shadow: 
+    0 0 40px var(--nintendo-yellow),
+    inset 0 0 40px rgba(255, 204, 0, 0.3);
+  border-color: var(--nintendo-red);
 }
 
 .avatar-container::before,
@@ -62,16 +74,16 @@
 
 @keyframes avatar-bounce {
   0%, 100% {
-    transform: scale(1) rotate(0deg);
+    transform: scale(1) rotate(0deg) translateZ(0);
   }
   25% {
-    transform: scale(1.1) rotate(-5deg);
+    transform: scale(1.1) rotate(-5deg) translateZ(0);
   }
   50% {
-    transform: scale(1.15) rotate(5deg);
+    transform: scale(1.15) rotate(5deg) translateZ(0);
   }
   75% {
-    transform: scale(1.1) rotate(-3deg);
+    transform: scale(1.1) rotate(-3deg) translateZ(0);
   }
 }
 
@@ -188,13 +200,22 @@
   border: 2px solid var(--nintendo-border);
   background: rgba(0, 0, 0, 0.3);
   min-width: 120px;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform, box-shadow;
+  transform: translateZ(0);
+  cursor: pointer;
 }
 
 .stat-item:hover {
   border-color: var(--nintendo-green);
-  box-shadow: 0 0 20px rgba(0, 204, 0, 0.5);
-  transform: translateY(-5px);
+  box-shadow: 0 0 25px rgba(0, 204, 0, 0.6);
+  transform: translateY(-8px) scale(1.05) translateZ(0);
+  background: rgba(0, 204, 0, 0.1);
+}
+
+.stat-item:active {
+  transform: translateY(-4px) scale(1.02) translateZ(0);
+  transition: all 0.1s ease;
 }
 
 .stat-number {
@@ -228,11 +249,13 @@
   box-shadow: 0 0 10px var(--nintendo-yellow);
   animation: float-up linear infinite;
   opacity: 0.6;
+  will-change: transform, opacity;
+  transform: translateZ(0);
 }
 
 @keyframes float-up {
   0% {
-    transform: translateY(100vh) translateX(0) rotate(0deg);
+    transform: translateY(100vh) translateX(0) rotate(0deg) translateZ(0);
     opacity: 0;
   }
   10% {
@@ -242,7 +265,7 @@
     opacity: 0.6;
   }
   100% {
-    transform: translateY(-100px) translateX(50px) rotate(360deg);
+    transform: translateY(-100px) translateX(50px) rotate(360deg) translateZ(0);
     opacity: 0;
   }
 }

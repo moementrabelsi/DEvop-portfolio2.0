@@ -6,6 +6,32 @@ function Education() {
 
   const saveFiles = [
     {
+      id: 4,
+      year: '2025',
+      title: 'DevOps Engineer (Production Systems)',
+      company: 'Inoui Agency',
+      location: 'France',
+      period: 'January 2025 – Present',
+      description: 'Design and maintenance of scalable Kubernetes clusters. Automation of CI/CD pipelines using Jenkins, GitLab CI, and Terraform. Implementation of monitoring solutions with Prometheus and Grafana.',
+      skills: ['Kubernetes', 'AWS EKS', 'Jenkins', 'GitLab CI', 'Terraform', 'Prometheus', 'Grafana', 'Docker'],
+      icon: '☸️',
+      color: 'red',
+      status: 'active'
+    },
+    {
+      id: 3,
+      year: '2024',
+      title: 'Full-Stack Developer',
+      company: 'Inoui Agency',
+      location: 'France',
+      period: 'August 2024 – Present',
+      description: 'Development of modern web applications using MERN stack and Vue.js. Implementation of facial recognition module using TensorFlow and OpenCV. Containerization and Kubernetes deployments.',
+      skills: ['MERN Stack', 'Vue.js', 'TensorFlow', 'OpenCV', 'Docker', 'Kubernetes', 'AWS'],
+      icon: '🚀',
+      color: 'green',
+      status: 'active'
+    },
+    {
       id: 1,
       year: '2023',
       title: 'Frontend Internship',
@@ -30,32 +56,6 @@ function Education() {
       icon: '🎓',
       color: 'yellow',
       status: 'completed'
-    },
-    {
-      id: 3,
-      year: '2024',
-      title: 'Full-Stack Developer',
-      company: 'Inoui Agency',
-      location: 'France',
-      period: 'August 2024 – Present',
-      description: 'Development of modern web applications using MERN stack and Vue.js. Implementation of facial recognition module using TensorFlow and OpenCV. Containerization and Kubernetes deployments.',
-      skills: ['MERN Stack', 'Vue.js', 'TensorFlow', 'OpenCV', 'Docker', 'Kubernetes', 'AWS'],
-      icon: '🚀',
-      color: 'green',
-      status: 'active'
-    },
-    {
-      id: 4,
-      year: '2025',
-      title: 'DevOps Engineer (Production Systems)',
-      company: 'Inoui Agency',
-      location: 'France',
-      period: 'January 2025 – Present',
-      description: 'Design and maintenance of scalable Kubernetes clusters. Automation of CI/CD pipelines using Jenkins, GitLab CI, and Terraform. Implementation of monitoring solutions with Prometheus and Grafana.',
-      skills: ['Kubernetes', 'AWS EKS', 'Jenkins', 'GitLab CI', 'Terraform', 'Prometheus', 'Grafana', 'Docker'],
-      icon: '☸️',
-      color: 'red',
-      status: 'active'
     }
   ]
 

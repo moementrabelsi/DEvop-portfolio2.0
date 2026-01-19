@@ -24,9 +24,26 @@
   align-items: center;
   gap: 8px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   padding: 6px 10px;
   border: 2px solid transparent;
+  border-radius: 4px;
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+.nav-logo:hover {
+  background: rgba(230, 0, 18, 0.1);
+  border-color: var(--nintendo-red);
+}
+
+.nav-logo:active {
+  transform: scale(0.98) translateZ(0);
+}
+
+.nav-logo:focus-visible {
+  outline: 2px solid var(--nintendo-yellow);
+  outline-offset: 2px;
 }
 
 .nav-emoji {
@@ -45,15 +62,17 @@
   object-fit: cover;
   image-rendering: pixelated;
   filter: grayscale(0.3) contrast(1.1);
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   flex-shrink: 0;
+  will-change: transform, filter;
+  transform: translateZ(0);
 }
 
 .nav-logo:hover .nav-logo-image {
   filter: grayscale(0) contrast(1.2);
-  transform: scale(1.1);
+  transform: scale(1.1) translateZ(0);
   border-color: var(--nintendo-red);
-  box-shadow: 0 0 10px var(--nintendo-red);
+  box-shadow: 0 0 15px var(--nintendo-red);
 }
 
 .nav-logo:hover .nav-emoji {
@@ -132,7 +151,7 @@
   border: 2px solid transparent;
   padding: 8px 12px;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   text-transform: uppercase;
   position: relative;
   display: flex;
@@ -141,6 +160,14 @@
   white-space: nowrap;
   min-height: 44px;
   touch-action: manipulation;
+  will-change: transform, box-shadow;
+  transform: translateZ(0);
+  border-radius: 4px;
+}
+
+.nav-link:focus-visible {
+  outline: 2px solid var(--nintendo-yellow);
+  outline-offset: 2px;
 }
 
 .nav-icon {
@@ -172,14 +199,31 @@
 .nav-link:hover {
   color: var(--nintendo-yellow);
   border-color: var(--nintendo-yellow);
-  box-shadow: 0 0 10px var(--nintendo-yellow);
+  box-shadow: 0 0 15px var(--nintendo-yellow);
+  transform: translateY(-2px) translateZ(0);
+  background: rgba(255, 204, 0, 0.1);
+}
+
+.nav-link:active {
+  transform: translateY(0) translateZ(0);
+  transition: all 0.1s ease;
 }
 
 .nav-link.active {
   color: var(--nintendo-red);
   border-color: var(--nintendo-red);
-  box-shadow: 0 0 15px var(--nintendo-glow);
-  background: rgba(230, 0, 18, 0.1);
+  box-shadow: 0 0 20px var(--nintendo-glow);
+  background: rgba(230, 0, 18, 0.15);
+  animation: active-pulse 2s ease-in-out infinite;
+}
+
+@keyframes active-pulse {
+  0%, 100% {
+    box-shadow: 0 0 15px var(--nintendo-glow);
+  }
+  50% {
+    box-shadow: 0 0 25px var(--nintendo-glow);
+  }
 }
 
 /* Dropdown Styles */

@@ -1,17 +1,19 @@
-import React, { useState, useEffect } from 'react'
-import Hero from './components/Hero'
-import About from './components/About'
-import Experience from './components/Experience'
-import Education from './components/Education'
-import Certifications from './components/Certifications'
-import Skills from './components/Skills'
-import Projects from './components/Projects'
-import BossFight from './components/BossFight'
-import Contact from './components/Contact'
+import React, { useState, useEffect, useCallback, Suspense, lazy } from 'react'
 import Navigation from './components/Navigation'
 import KeyboardShortcuts from './components/KeyboardShortcuts'
 import ScrollHelper from './components/ScrollHelper'
 import './App.css'
+
+// Lazy load components for better performance
+const Hero = lazy(() => import('./components/Hero'))
+const About = lazy(() => import('./components/About'))
+const Experience = lazy(() => import('./components/Experience'))
+const Education = lazy(() => import('./components/Education'))
+const Certifications = lazy(() => import('./components/Certifications'))
+const Skills = lazy(() => import('./components/Skills'))
+const Projects = lazy(() => import('./components/Projects'))
+const BossFight = lazy(() => import('./components/BossFight'))
+const Contact = lazy(() => import('./components/Contact'))
 
 function App() {
   const [currentSection, setCurrentSection] = useState('hero')
@@ -23,25 +25,37 @@ function App() {
   const sections = ['hero', 'about', 'experience', 'education', 'certifications', 'skills', 'projects', 'boss-fight', 'contact']
   const konamiSequence = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a']
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY + 200
+  // Throttle scroll handler for better performance
+  const handleScroll = useCallback(() => {
+    const scrollPosition = window.scrollY + 200
 
-      for (const section of sections) {
-        const element = document.getElementById(section)
-        if (element) {
-          const { offsetTop, offsetHeight } = element
-          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
-            setCurrentSection(section)
-            break
-          }
+    for (const section of sections) {
+      const element = document.getElementById(section)
+      if (element) {
+        const { offsetTop, offsetHeight } = element
+        if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+          setCurrentSection(section)
+          break
         }
       }
     }
+  }, [sections])
 
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+  useEffect(() => {
+    let ticking = false
+    const throttledScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          handleScroll()
+          ticking = false
+        })
+        ticking = true
+      }
+    }
+
+    window.addEventListener('scroll', throttledScroll, { passive: true })
+    return () => window.removeEventListener('scroll', throttledScroll)
+  }, [handleScroll])
 
   useEffect(() => {
     const cursorInterval = setInterval(() => {
@@ -163,15 +177,17 @@ function App() {
       <ScrollHelper sections={sections} />
       
       <main className="main-content">
-        <Hero />
-        <About />
-        <Experience />
-        <Education />
-        <Certifications />
-        <Skills />
-        <Projects />
-        <BossFight />
-        <Contact />
+        <Suspense fallback={<div className="loading-section">Loading...</div>}>
+          <Hero />
+          <About />
+          <Experience />
+          <Education />
+          <Certifications />
+          <Skills />
+          <Projects />
+          <BossFight />
+          <Contact />
+        </Suspense>
       </main>
 
       <div className="retro-border"></div>

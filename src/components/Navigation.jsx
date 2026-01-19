@@ -50,7 +50,19 @@ function Navigation({ currentSection }) {
   return (
     <nav className="retro-nav">
       <div className="nav-container">
-        <div className="nav-logo" onClick={() => scrollToSection('hero')}>
+        <div 
+          className="nav-logo" 
+          onClick={() => scrollToSection('hero')}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault()
+              scrollToSection('hero')
+            }
+          }}
+          role="button"
+          tabIndex={0}
+          aria-label="Go to home section"
+        >
           <img 
             src={profileImage} 
             alt="Abdelmoemen Trabelsi"
@@ -72,6 +84,8 @@ function Navigation({ currentSection }) {
         <button 
           className={`menu-toggle ${isMenuOpen ? 'active' : ''}`}
           onClick={() => setIsMenuOpen(!isMenuOpen)}
+          aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
+          aria-expanded={isMenuOpen}
         >
           <span></span>
           <span></span>
@@ -84,8 +98,10 @@ function Navigation({ currentSection }) {
               <button
                 className={`nav-link ${currentSection === item.id ? 'active' : ''}`}
                 onClick={() => scrollToSection(item.id)}
+                aria-label={`Navigate to ${item.label} section`}
+                aria-current={currentSection === item.id ? 'page' : undefined}
               >
-                <span className="nav-icon">{item.icon}</span>
+                <span className="nav-icon" aria-hidden="true">{item.icon}</span>
                 <span>{item.label}</span>
               </button>
             </li>
@@ -95,10 +111,13 @@ function Navigation({ currentSection }) {
             <button
               className={`nav-link nav-dropdown-toggle ${isPortfolioActive ? 'active' : ''}`}
               onClick={() => setIsPortfolioOpen(!isPortfolioOpen)}
+              aria-expanded={isPortfolioOpen}
+              aria-haspopup="true"
+              aria-label="Portfolio menu"
             >
-              <span className="nav-icon">📁</span>
+              <span className="nav-icon" aria-hidden="true">📁</span>
               <span>PORTFOLIO</span>
-              <span className="dropdown-arrow">{isPortfolioOpen ? '▼' : '▶'}</span>
+              <span className="dropdown-arrow" aria-hidden="true">{isPortfolioOpen ? '▼' : '▶'}</span>
             </button>
             {isPortfolioOpen && (
               <ul className="dropdown-menu">
@@ -107,8 +126,10 @@ function Navigation({ currentSection }) {
                     <button
                       className={`dropdown-link ${currentSection === item.id ? 'active' : ''}`}
                       onClick={() => scrollToSection(item.id)}
+                      aria-label={`Navigate to ${item.label} section`}
+                      aria-current={currentSection === item.id ? 'page' : undefined}
                     >
-                      <span className="dropdown-icon">{item.icon}</span>
+                      <span className="dropdown-icon" aria-hidden="true">{item.icon}</span>
                       <span>{item.label}</span>
                     </button>
                   </li>
@@ -121,8 +142,10 @@ function Navigation({ currentSection }) {
             <button
               className={`nav-link ${currentSection === 'contact' ? 'active' : ''}`}
               onClick={() => scrollToSection('contact')}
+              aria-label="Navigate to Contact section"
+              aria-current={currentSection === 'contact' ? 'page' : undefined}
             >
-              <span className="nav-icon">📧</span>
+              <span className="nav-icon" aria-hidden="true">📧</span>
               <span>CONTACT</span>
             </button>
           </li>

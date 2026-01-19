@@ -20,6 +20,24 @@
   padding: 20px;
 }
 
+/* Loading section */
+.loading-section {
+  padding: 60px 20px;
+  text-align: center;
+  color: var(--nintendo-yellow);
+  font-size: 12px;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
 /* Section styling */
 section {
   padding: 60px 20px;
@@ -30,8 +48,11 @@ section {
   box-shadow: 
     0 0 20px rgba(0, 0, 0, 0.5),
     inset 0 0 20px rgba(0, 102, 204, 0.1);
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   scroll-margin-top: 80px;
+  will-change: transform, box-shadow;
+  backface-visibility: hidden;
+  transform: translateZ(0);
 }
 
 section:hover {
@@ -39,7 +60,12 @@ section:hover {
   box-shadow: 
     0 0 30px var(--nintendo-glow),
     inset 0 0 30px rgba(0, 102, 204, 0.2);
-  transform: translateY(-2px);
+  transform: translateY(-2px) translateZ(0);
+}
+
+section:focus-within {
+  outline: 2px solid var(--nintendo-yellow);
+  outline-offset: 4px;
 }
 
 section h2 {
@@ -77,7 +103,7 @@ section h2::after {
   cursor: pointer;
   font-size: 10px;
   text-transform: uppercase;
-  transition: all 0.1s ease;
+  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: 
     4px 4px 0 var(--nintendo-text),
     0 0 10px var(--nintendo-glow);
@@ -85,20 +111,55 @@ section h2::after {
   min-height: 44px;
   min-width: 44px;
   touch-action: manipulation;
+  will-change: transform, box-shadow;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  overflow: hidden;
+}
+
+.pixel-button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.pixel-button:hover::before {
+  width: 300px;
+  height: 300px;
 }
 
 .pixel-button:hover {
-  transform: translate(2px, 2px);
+  transform: translate(2px, 2px) translateZ(0);
   box-shadow: 
     2px 2px 0 var(--nintendo-text),
-    0 0 15px var(--nintendo-glow);
+    0 0 20px var(--nintendo-glow);
+  background: #ff0015;
 }
 
 .pixel-button:active {
-  transform: translate(4px, 4px);
+  transform: translate(4px, 4px) translateZ(0);
   box-shadow: 
     0 0 0 var(--nintendo-text),
-    0 0 20px var(--nintendo-glow);
+    0 0 25px var(--nintendo-glow);
+  transition: all 0.05s ease;
+}
+
+.pixel-button:focus-visible {
+  outline: 3px solid var(--nintendo-yellow);
+  outline-offset: 3px;
+}
+
+.pixel-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
 }
 
 /* Typing effect */
@@ -123,10 +184,10 @@ section h2::after {
 /* Pixel art animations */
 @keyframes pixel-bounce {
   0%, 100% {
-    transform: translateY(0);
+    transform: translateY(0) translateZ(0);
   }
   50% {
-    transform: translateY(-10px);
+    transform: translateY(-10px) translateZ(0);
   }
 }
 
@@ -136,6 +197,25 @@ section h2::after {
   }
   50% {
     box-shadow: 0 0 30px var(--nintendo-glow);
+  }
+}
+
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }
 

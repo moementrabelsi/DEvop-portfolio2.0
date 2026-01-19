@@ -1,8 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import './Projects.css'
 
 function Projects() {
   const [selectedLevel, setSelectedLevel] = useState(null)
+  const overviewRef = useRef(null)
+  const detailsRef = useRef(null)
 
   const levels = [
     {
@@ -123,11 +125,41 @@ function Projects() {
     return '⭐'.repeat(count)
   }
 
+  const handleCloseLevel = () => {
+    setSelectedLevel(null)
+    // Scroll back to overview after a short delay to allow state update
+    setTimeout(() => {
+      if (overviewRef.current) {
+        overviewRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      }
+    }, 100)
+  }
+
+  const handleLevelClick = (levelId) => {
+    if (selectedLevel === levelId) {
+      // If clicking the same level, close it and scroll back
+      handleCloseLevel()
+    } else {
+      // Open the selected level
+      setSelectedLevel(levelId)
+    }
+  }
+
+  // Scroll to details when a level is opened
+  useEffect(() => {
+    if (selectedLevel && detailsRef.current) {
+      // Small delay to ensure the DOM has updated
+      setTimeout(() => {
+        detailsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      }, 100)
+    }
+  }, [selectedLevel])
+
   return (
     <section id="projects" className="projects-section">
       <h2>PROJECTS — BOSS BATTLES & GAME LEVELS</h2>
       
-      <div className="world-map-overview">
+      <div className="world-map-overview" ref={overviewRef}>
         <div className="map-title">🗺️ PROJECTS OVERVIEW (World Map)</div>
         <div className="map-subtitle">Select a Level</div>
         <div className="map-note">Levels unlock from left to right</div>
@@ -137,7 +169,7 @@ function Projects() {
             <div
               key={level.id}
               className={`level-node level-${level.color} ${selectedLevel === level.id ? 'selected' : ''} ${level.isBoss ? 'boss-level' : ''} ${level.isBonus ? 'bonus-level' : ''}`}
-              onClick={() => setSelectedLevel(selectedLevel === level.id ? null : level.id)}
+              onClick={() => handleLevelClick(level.id)}
             >
               <div className="level-number">LEVEL {level.id}</div>
               <div className="level-icon">{level.icon}</div>
@@ -151,7 +183,7 @@ function Projects() {
       </div>
 
       {selectedLevel && (
-        <div className="level-details-container">
+        <div className="level-details-container" ref={detailsRef}>
           {levels
             .filter(level => level.id === selectedLevel)
             .map(level => (
@@ -172,7 +204,8 @@ function Projects() {
                     </div>
                     <button 
                       className="close-level-button"
-                      onClick={() => setSelectedLevel(null)}
+                      onClick={handleCloseLevel}
+                      aria-label="Close level details and return to overview"
                     >
                       ✕
                     </button>
