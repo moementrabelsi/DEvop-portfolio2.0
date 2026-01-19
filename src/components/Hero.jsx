@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import './Hero.css'
 
+// Import profile image
+import profileImage from '../assets/portfolio-img.jpg'
+
 function Hero() {
   const [displayedText, setDisplayedText] = useState('')
   const fullText = 'DevOps Engineer | Certified Kubernetes Administrator'
@@ -47,7 +50,18 @@ function Hero() {
             style={{ cursor: 'pointer' }}
             title="Click me! 👆"
           >
-            <div className="avatar-pixel">👨‍💻</div>
+            <img 
+              src={profileImage} 
+              alt="Abdelmoemen Trabelsi"
+              className="avatar-image"
+              onError={(e) => {
+                e.target.style.display = 'none'
+                if (e.target.nextSibling) {
+                  e.target.nextSibling.style.display = 'block'
+                }
+              }}
+            />
+            <div className="avatar-pixel" style={{ display: 'none' }}>👨‍💻</div>
           </div>
         </div>
         

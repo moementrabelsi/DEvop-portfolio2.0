@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 import './Navigation.css'
+import profileImage from '../assets/portfolio-img.jpg'
 
 function Navigation({ currentSection }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -50,7 +51,18 @@ function Navigation({ currentSection }) {
     <nav className="retro-nav">
       <div className="nav-container">
         <div className="nav-logo" onClick={() => scrollToSection('hero')}>
-          <span className="nav-emoji">👨‍💻</span>
+          <img 
+            src={profileImage} 
+            alt="Abdelmoemen Trabelsi"
+            className="nav-logo-image"
+            onError={(e) => {
+              e.target.style.display = 'none'
+              if (e.target.nextSibling) {
+                e.target.nextSibling.style.display = 'inline-block'
+              }
+            }}
+          />
+          <span className="nav-emoji" style={{ display: 'none' }}>👨‍💻</span>
           <div className="nav-logo-text">
             <div className="nav-name">Abdelmoemen Trabelsi</div>
             <div className="nav-subtitle">DevOps Engineer - Certified CKA</div>

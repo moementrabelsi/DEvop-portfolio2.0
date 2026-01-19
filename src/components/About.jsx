@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
 import './About.css'
 
+// Import profile image
+import profileImage from '../assets/portfolio-img.jpg'
+
 function About() {
   const [selectedTab, setSelectedTab] = useState('profile')
 
@@ -74,7 +77,20 @@ function About() {
       <div className="player-profile">
         <div className="profile-header">
           <div className="player-avatar">
-            <div className="avatar-frame">👨‍💻</div>
+            <div className="avatar-frame">
+              <img 
+                src={profileImage} 
+                alt="Abdelmoemen Trabelsi"
+                className="player-avatar-image"
+                onError={(e) => {
+                  e.target.style.display = 'none'
+                  if (e.target.nextSibling) {
+                    e.target.nextSibling.style.display = 'block'
+                  }
+                }}
+              />
+              <span style={{ display: 'none' }}>👨‍💻</span>
+            </div>
             <div className="level-badge">Lv.{playerStats.level}</div>
           </div>
           <div className="player-info">
